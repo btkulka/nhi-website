@@ -1,0 +1,29 @@
+{
+  "permissions": {
+    "allow": [
+      "WebFetch(domain:www.siteinspire.com)",
+      "WebFetch(domain:minimal.gallery)",
+      "Bash(where ffmpeg *)",
+      "Bash(ffmpeg -hide_banner -loglevel error -y -i \"d:\\\\source\\\\nhi-website\\\\I Need a Forest Fire [NHI Flip].wav\" -codec:a libmp3lame -b:a 192k -ar 44100 \"d:\\\\source\\\\nhi-website\\\\assets\\\\i-need-a-forest-fire-nhi-flip.mp3\")",
+      "Bash(ffprobe -hide_banner -v error -show_entries format=duration,bit_rate,size -show_entries stream=codec_name,sample_rate,channels -of default=nw=1 \"d:\\\\source\\\\nhi-website\\\\assets\\\\i-need-a-forest-fire-nhi-flip.mp3\")",
+      "Bash(ffmpeg -hide_banner -loglevel error -y -i \"d:\\\\source\\\\nhi-website\\\\I Need a Forest Fire [NHI Flip].wav\" -vn -map 0:a -codec:a libmp3lame -b:a 192k -ar 44100 \"d:\\\\source\\\\nhi-website\\\\assets\\\\i-need-a-forest-fire-nhi-flip.mp3\")",
+      "Bash(ffprobe -hide_banner -v error -show_entries format=duration,bit_rate,size -of default=nw=1 \"d:\\\\source\\\\nhi-website\\\\assets\\\\i-need-a-forest-fire-nhi-flip.mp3\")",
+      "Bash(start \"\" \"d:\\\\source\\\\nhi-website\\\\mockups\\\\concept-a-colophon.html\")",
+      "Bash(start \"\" \"d:\\\\source\\\\nhi-website\\\\mockups\\\\concept-b-vertical.html\")",
+      "Bash(start \"\" \"d:\\\\source\\\\nhi-website\\\\index.html\")",
+      "Bash(ffprobe -hide_banner -v error -show_entries stream=codec_name,width,height,r_frame_rate,bit_rate -show_entries format=duration,size,bit_rate -of default=nw=1 \"d:\\\\source\\\\nhi-website\\\\design_system\\\\assets\\\\burning_tree_30s_60fps.mp4\")",
+      "Bash(ffmpeg -hide_banner -loglevel error -y -i \"d:\\\\source\\\\nhi-website\\\\design_system\\\\assets\\\\burning_tree_30s_60fps.mp4\" -vf \"scale=1080:1920:flags=lanczos,fps=30\" -c:v libx264 -preset slow -crf 23 -pix_fmt yuv420p -profile:v high -level 4.0 -movflags +faststart -an \"d:\\\\source\\\\nhi-website\\\\assets\\\\burning-tree-1080p.mp4\")",
+      "Bash(ffprobe -hide_banner -v error -show_entries format=duration,size,bit_rate -of default=nw=1 \"d:\\\\source\\\\nhi-website\\\\assets\\\\burning-tree-1080p.mp4\")",
+      "Bash(ffmpeg -hide_banner -loglevel error -y -i \"d:\\\\source\\\\nhi-website\\\\design_system\\\\assets\\\\burning_tree_30s_60fps.mp4\" -vf \"scale=720:1280:flags=lanczos,fps=30\" -c:v libx264 -preset slow -crf 24 -pix_fmt yuv420p -profile:v high -level 4.0 -movflags +faststart -an \"d:\\\\source\\\\nhi-website\\\\assets\\\\burning-tree-720p.mp4\")",
+      "Bash(ffprobe -hide_banner -v error -show_entries format=duration,size,bit_rate -of default=nw=1 \"d:\\\\source\\\\nhi-website\\\\assets\\\\burning-tree-720p.mp4\")",
+      "Bash(npm --version)",
+      "Bash(mkdir -p \"d:\\\\source\\\\nhi-website\\\\public\" && mv \"d:\\\\source\\\\nhi-website\\\\assets\\\\i-need-a-forest-fire-nhi-flip.mp3\" \"d:\\\\source\\\\nhi-website\\\\assets\\\\burning-tree-1080p.mp4\" \"d:\\\\source\\\\nhi-website\\\\assets\\\\burning-tree-720p.mp4\" \"d:\\\\source\\\\nhi-website\\\\public\\\\\" && cp \"d:\\\\source\\\\nhi-website\\\\design_system\\\\assets\\\\the-gamut.jpg\" \"d:\\\\source\\\\nhi-website\\\\public\\\\the-gamut.jpg\" && rmdir \"d:\\\\source\\\\nhi-website\\\\assets\" && ls -la \"d:\\\\source\\\\nhi-website\\\\public\")",
+      "Bash(git init *)",
+      "Bash(git add *)",
+      "Bash(git -c user.email=ben@forcemajeure.vip -c user.name=\"ben\" commit -q -m \"initial scaffold: vite + react, concept B layout, audio bar, burning tree video\")"
+    ],
+    "additionalDirectories": [
+      "d:\\source\\nhi-website"
+    ]
+  }
+}

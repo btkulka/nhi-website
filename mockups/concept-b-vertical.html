@@ -1,0 +1,185 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <title>nhi</title>
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <link rel="stylesheet" href="../design_system/colors_and_type.css">
+  <style>
+    html, body { height: 100%; }
+    body {
+      display: grid;
+      grid-template-columns: 110px 1fr;
+      grid-template-rows: 1fr auto;
+      padding: 56px var(--gutter) 32px;
+      column-gap: var(--s-5);
+      row-gap: var(--s-10);
+    }
+    .stack {
+      grid-column: 1;
+      grid-row: 1 / 3;
+      display: flex;
+      flex-direction: column;
+      align-items: flex-start;
+      justify-content: flex-start;
+      gap: 0;
+    }
+    .stack .letter {
+      font-family: var(--font-display);
+      font-style: italic;
+      font-weight: 300;
+      font-size: 132px;
+      line-height: 0.85;
+      letter-spacing: -0.02em;
+      color: var(--bone);
+    }
+    .stack .letter.red { color: var(--ember); }
+    .stack .index {
+      margin-top: auto;
+      font-family: var(--font-mono);
+      font-size: var(--fs-meta);
+      letter-spacing: var(--tr-mono);
+      text-transform: uppercase;
+      color: var(--bone-4);
+    }
+    .right {
+      grid-column: 2;
+      grid-row: 1;
+      display: flex;
+      flex-direction: column;
+      gap: var(--s-6);
+    }
+    .video-strip {
+      width: 100%;
+      aspect-ratio: 9 / 16;
+      max-height: 320px;
+      overflow: hidden;
+      background: var(--ink-2);
+      position: relative;
+    }
+    .video-strip video {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      display: block;
+    }
+    .video-strip .label {
+      position: absolute;
+      left: var(--s-3);
+      bottom: var(--s-3);
+      font-family: var(--font-mono);
+      font-size: 10px;
+      letter-spacing: var(--tr-wide);
+      text-transform: uppercase;
+      color: var(--bone);
+    }
+    .video-strip .label .red { color: var(--ember); }
+    .tagline {
+      font-family: var(--font-display);
+      font-style: italic;
+      font-weight: 300;
+      font-size: 16px;
+      line-height: 1.35;
+      color: var(--bone-2);
+    }
+    .tagline .red { color: var(--ember); }
+    .links {
+      display: flex;
+      flex-direction: column;
+      gap: var(--s-4);
+    }
+    .link {
+      display: grid;
+      grid-template-columns: 18px 1fr auto;
+      align-items: center;
+      gap: var(--s-3);
+      font-family: var(--font-mono);
+      font-size: 13px;
+      letter-spacing: var(--tr-mono);
+      text-transform: uppercase;
+      color: var(--bone);
+      text-decoration: none;
+      transition: color var(--dur-base) var(--ease-out);
+    }
+    .link .icon {
+      width: 16px;
+      height: 16px;
+      color: var(--bone-2);
+      transition: color var(--dur-base) var(--ease-out);
+      display: block;
+    }
+    .link .leader {
+      color: var(--bone-4);
+      letter-spacing: 0.1em;
+      font-size: 11px;
+    }
+    .link:hover { color: var(--ember); }
+    .link:hover .icon { color: var(--ember); }
+    .link:hover .leader { color: var(--ember); }
+    .footer {
+      grid-column: 2;
+      grid-row: 2;
+      display: flex;
+      justify-content: space-between;
+      font-family: var(--font-mono);
+      font-size: var(--fs-meta);
+      letter-spacing: var(--tr-mono);
+      text-transform: uppercase;
+      color: var(--bone-4);
+    }
+  </style>
+</head>
+<body>
+  <div class="stack">
+    <div class="letter">n</div>
+    <div class="letter red">h</div>
+    <div class="letter">i</div>
+    <div class="index">austin</div>
+  </div>
+
+  <div class="right">
+    <div class="video-strip">
+      <video src="../design_system/assets/burning_tree_30s_60fps.mp4"
+             autoplay muted loop playsinline
+             poster="../design_system/assets/the-gamut.jpg"></video>
+      <div class="label"><span class="red">new</span> · burning tree</div>
+    </div>
+
+    <div class="tagline">the signal precedes the song<span class="red">.</span></div>
+
+    <div class="links">
+      <a class="link" href="#" aria-label="spotify">
+        <svg class="icon" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
+          <path d="M12 0C5.4 0 0 5.4 0 12s5.4 12 12 12 12-5.4 12-12S18.66 0 12 0zm5.521 17.34c-.24.359-.66.48-1.021.24-2.82-1.74-6.36-2.101-10.561-1.141-.418.122-.779-.179-.899-.539-.12-.421.18-.78.54-.9 4.56-1.021 8.52-.6 11.64 1.32.42.18.479.659.301 1.02zm1.44-3.3c-.301.42-.841.6-1.262.3-3.239-1.98-8.159-2.58-11.939-1.38-.479.12-1.02-.12-1.14-.6-.12-.48.12-1.021.6-1.141C9.6 9.9 15 10.561 18.72 12.84c.361.181.54.78.241 1.2zm.12-3.36C15.24 8.4 8.82 8.16 5.16 9.301c-.6.179-1.2-.181-1.38-.721-.18-.601.18-1.2.72-1.381 4.26-1.26 11.28-1.02 15.721 1.621.539.3.719 1.02.42 1.56-.299.421-1.02.599-1.559.3z"/>
+        </svg>
+        <span>spotify</span><span class="leader">———</span>
+      </a>
+      <a class="link" href="#" aria-label="soundcloud">
+        <svg class="icon" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
+          <path d="M1.175 12.225c-.051 0-.094.046-.101.1l-.233 2.154.233 2.105c.007.058.05.098.101.098.05 0 .09-.04.099-.098l.255-2.105-.27-2.154c0-.057-.045-.1-.09-.1zm-.899.828c-.06 0-.091.037-.104.094L0 14.479l.165 1.308c0 .055.045.094.09.094s.089-.045.104-.104l.21-1.319-.21-1.334c0-.061-.044-.09-.09-.09zm1.83-1.229c-.061 0-.12.045-.12.104l-.21 2.563.225 2.458c0 .06.045.12.119.12.061 0 .105-.061.121-.12l.254-2.474-.254-2.548c-.016-.06-.061-.12-.121-.12-.045.016-.075.06-.075.121zm.945-.089c-.075 0-.135.06-.15.135l-.193 2.64.21 2.544c.016.077.075.138.149.138.075 0 .135-.061.15-.15l.24-2.532-.24-2.623c0-.075-.06-.135-.135-.135l-.031-.017zm1.155.36c-.005-.09-.075-.149-.159-.149-.09 0-.158.06-.164.149l-.217 2.43.2 2.563c0 .09.075.157.159.157.074 0 .148-.068.148-.158l.227-2.563-.227-2.444.033.015zm.809-1.709c-.101 0-.18.09-.18.181l-.21 3.957.187 2.563c0 .09.08.164.18.164.094 0 .174-.09.18-.18l.209-2.563-.209-3.972c-.008-.104-.088-.18-.18-.18l.023.03zm.959-.914c-.105 0-.195.09-.203.194l-.18 4.872.165 2.548c0 .12.09.209.195.209.104 0 .194-.089.21-.209l.193-2.548-.192-4.856c-.016-.12-.105-.21-.21-.21h.022zm.989-.449c-.121 0-.211.089-.225.209l-.165 5.275.165 2.52c.014.119.104.225.225.225.119 0 .225-.105.225-.226l.195-2.52-.196-5.275c0-.12-.105-.225-.225-.225l.001.017zm1.245.045c0-.135-.105-.24-.24-.24-.119 0-.225.105-.24.24l-.149 5.441.149 2.503c.016.135.121.24.256.24.119 0 .24-.105.24-.24l.164-2.503-.164-5.456-.016.015zm.749-.66c-.135 0-.255.12-.255.255l-.15 6.06.15 2.473c0 .15.12.255.255.255s.255-.12.27-.27l.15-2.474-.15-6.029c0-.15-.12-.27-.255-.27h-.015zm1.005-.166c-.149 0-.27.121-.284.271l-.103 6.196.135 2.488c0 .149.119.27.27.27.149 0 .27-.12.285-.271l.149-2.486-.149-6.196c-.016-.149-.135-.284-.285-.284l-.018.012zm1.184.075c-.165 0-.299.135-.299.299l-.121 6.092.135 2.443c0 .166.135.301.299.301.166 0 .301-.135.301-.301l.135-2.443-.135-6.092c-.016-.166-.15-.299-.314-.299zm.93 0c-.179 0-.314.135-.328.314l-.105 6.062.121 2.439c.014.179.149.314.328.314.18 0 .314-.135.33-.314l.119-2.439-.119-6.062c-.016-.18-.166-.314-.33-.314zm1.245-1.366c-.061-.029-.135-.045-.211-.045-.09 0-.18.029-.255.06-.149.075-.255.226-.255.391v.029l.105 7.501.105 1.34.105 1.319c0 .302.24.541.541.541s.539-.239.539-.541l.225-2.659-.225-7.546c0-.224-.135-.418-.345-.494l-.329.119v-.015zm1.394.166c-.105-.061-.225-.105-.359-.105-.105 0-.21.029-.314.075-.211.105-.359.314-.359.554v.045l.165 7.4-.075 1.305-.045 1.289v.029c0 .045 0 .105.014.135.061.301.314.524.629.524.302 0 .555-.225.615-.524.014-.061.014-.121.014-.166v-.061l.18-2.547-.193-7.412c-.014-.27-.15-.494-.357-.629l.085.088zm5.214 5.155c-.396 0-.78.075-1.125.21-.244-2.679-2.475-4.785-5.205-4.785-.66 0-1.305.135-1.875.346-.226.084-.286.176-.301.359v9.602c0 .195.135.346.314.376h8.176c1.83 0 3.314-1.484 3.314-3.314 0-1.846-1.471-3.346-3.301-3.346z"/>
+        </svg>
+        <span>soundcloud</span><span class="leader">———</span>
+      </a>
+      <a class="link" href="#" aria-label="bandcamp">
+        <svg class="icon" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
+          <path d="M0 18.75l7.437-13.5H24l-7.437 13.5H0z"/>
+        </svg>
+        <span>bandcamp</span><span class="leader">———</span>
+      </a>
+      <a class="link" href="#" aria-label="instagram">
+        <svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true">
+          <rect x="3" y="3" width="18" height="18" rx="0"/>
+          <circle cx="12" cy="12" r="4.25"/>
+          <circle cx="17.5" cy="6.5" r="0.85" fill="currentColor" stroke="none"/>
+        </svg>
+        <span>instagram</span><span class="leader">———</span>
+      </a>
+    </div>
+  </div>
+
+  <div class="footer">
+    <span>05.07.2026</span>
+    <span>mmxxvi</span>
+  </div>
+</body>
+</html>

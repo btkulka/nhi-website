@@ -1,0 +1,74 @@
+<!doctype html>
+<html><head><meta charset="utf-8"><link rel="stylesheet" href="_card.css">
+<style>
+  @keyframes pulse {
+    0%, 100% { transform: scaleY(0.35); }
+    50%      { transform: scaleY(1); }
+  }
+  .bar {
+    width: 2px;
+    height: 100%;
+    background: var(--bone);
+    transform-origin: center;
+    animation: pulse 0.9s var(--ease-in-out) infinite;
+  }
+  .bar.played { background: var(--ember); }
+</style>
+</head>
+<body>
+<div class="card">
+  <span class="label">audio bar — frosted glass over album art</span>
+
+  <div style="position:relative;width:480px;height:96px;border-top:1px solid var(--hairline);overflow:hidden;
+              background:url('../assets/the-gamut.jpg') center/cover">
+    <!-- darkening veil over full-bleed art -->
+    <div style="position:absolute;inset:0;background:linear-gradient(90deg,rgba(10,9,8,0.15) 0%,rgba(10,9,8,0.55) 22%,rgba(10,9,8,0.7) 100%)"></div>
+
+    <div style="position:relative;height:100%;display:flex;align-items:stretch">
+
+      <!-- 1:1 clear album art window with subtle inner frame -->
+      <div style="width:96px;height:96px;flex-shrink:0;position:relative;
+                  background:url('../assets/the-gamut.jpg') center/cover;
+                  box-shadow: inset 0 0 0 1px rgba(245,241,232,0.08);">
+        <button aria-label="pause" style="position:absolute;inset:0;margin:auto;width:32px;height:32px;border-radius:999px;background:rgba(10,9,8,0.55);backdrop-filter:blur(8px);-webkit-backdrop-filter:blur(8px);border:1px solid rgba(245,241,232,0.6);color:var(--bone);display:flex;align-items:center;justify-content:center;cursor:pointer">
+          <svg width="9" height="11" viewBox="0 0 9 11"><rect x="0" y="0" width="3" height="11" fill="currentColor"/><rect x="6" y="0" width="3" height="11" fill="currentColor"/></svg>
+        </button>
+      </div>
+
+      <!-- frosted glass panel over the faded art -->
+      <div style="flex:1;position:relative;
+                  background:rgba(10,9,8,0.35);
+                  backdrop-filter:blur(20px) saturate(120%);
+                  -webkit-backdrop-filter:blur(20px) saturate(120%);
+                  border-left:1px solid rgba(245,241,232,0.06);
+                  display:flex;flex-direction:column;justify-content:space-between;padding:14px 18px;min-width:0">
+
+        <div style="display:flex;justify-content:space-between;align-items:baseline;gap:12px">
+          <div style="min-width:0">
+            <div style="font-family:'JetBrains Mono',ui-monospace,monospace;font-weight:500;font-size:13px;letter-spacing:0.18em;text-transform:uppercase;color:var(--bone);line-height:1;white-space:nowrap;overflow:hidden;text-overflow:ellipsis">BURNING TREE</div>
+            <div style="font-family:var(--font-mono);font-size:9px;letter-spacing:0.28em;text-transform:uppercase;color:var(--bone-3);margin-top:6px">NHI · SINGLE</div>
+          </div>
+          <div style="font-family:var(--font-mono);font-size:10px;letter-spacing:0.08em;color:var(--bone-3);font-variant-numeric:tabular-nums;flex-shrink:0">1:24 / 4:32</div>
+        </div>
+
+        <!-- waveform progress -->
+        <div style="display:flex;align-items:center;gap:2px;height:22px;width:100%">
+          <script>
+            const heights = [30,55,40,65,80,50,45,70,90,60,35,50,75,55,42,68,82,55,40,52,70,88,60,45,58,72,50,38,62,78,55,40,48,68,85,62,45,52,72,58,40,50,65,80,55,42,60,75,88,62,45,55,70,52,38,58,72,82,60,45];
+            const playedTo = 18;
+            document.write(heights.map((h,i)=>{
+              const played = i < playedTo;
+              const opacity = played ? 1 : 0.5;
+              const delay = (i*40 % 900) + 'ms';
+              return `<div class="bar ${played?'played':''}" style="height:${h}%;animation-delay:${delay};opacity:${opacity}"></div>`;
+            }).join(''));
+          </script>
+        </div>
+      </div>
+
+    </div>
+  </div>
+
+  <div style="font-family:var(--font-mono);font-size:9px;letter-spacing:0.18em;text-transform:uppercase;color:var(--bone-4)">full-bleed album art · frosted glass right · clear 1:1 art left</div>
+</div>
+</body></html>

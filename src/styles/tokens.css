@@ -1,0 +1,293 @@
+/* =========================================================================
+   NHI — Foundations
+   Mobile-first artist site. Quiet, alien, mysterious.
+   Inspired by "The Gamut" — bone, ink, ember, ash-gold.
+   ========================================================================= */
+
+/* Webfonts via Google Fonts.
+   NOTE: no proprietary fonts were supplied. These are stand-ins:
+     - Cormorant Garamond  → display serif (mystical, light weights)
+     - JetBrains Mono       → labels, eyebrows, navigation, captions
+     - Manrope              → body text (quiet grotesque)
+   Replace with licensed metal/cut versions if/when desired. */
+@import url('https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;1,300;1,400&family=JetBrains+Mono:wght@300;400;500&family=Manrope:wght@300;400;500;600&display=swap');
+
+:root {
+  /* ── Core palette ─────────────────────────────────────────────────────── */
+  --ink:        #0a0908;   /* near-black background, slightly warm */
+  --ink-2:      #141210;   /* one step lighter — cards, sheets */
+  --ink-3:      #1c1916;   /* hover surfaces, dividers in dark mode */
+  --bone:       #f1ece1;   /* primary foreground — warm off-white */
+  --bone-2:     #d9d2c4;   /* dimmed foreground */
+  --bone-3:     #8a8478;   /* tertiary text, metadata */
+  --bone-4:     #4a4641;   /* low-contrast lines, hairlines */
+
+  /* ── Accent (used sparingly — never as fill, mostly as marks) ─────────── */
+  --ember:      #c93829;   /* The Gamut red — primary accent, single hits */
+  --ember-deep: #8a2317;   /* hover/pressed for ember */
+  --ash-gold:   #b78f54;   /* warm metallic — secondary accent */
+  --ash-gold-2: #836138;
+
+  /* ── Functional ───────────────────────────────────────────────────────── */
+  --hairline:        rgba(241, 236, 225, 0.10);
+  --hairline-strong: rgba(241, 236, 225, 0.18);
+  --scrim:           rgba(10, 9, 8, 0.72);
+  --scrim-soft:      rgba(10, 9, 8, 0.40);
+  --grain:           rgba(241, 236, 225, 0.025);
+
+  /* ── Semantic ─────────────────────────────────────────────────────────── */
+  --bg:            var(--ink);
+  --bg-elevated:   var(--ink-2);
+  --fg:            var(--bone);
+  --fg-2:          var(--bone-2);
+  --fg-muted:      var(--bone-3);
+  --fg-faint:      var(--bone-4);
+  --accent:        var(--ember);
+  --accent-2:      var(--ash-gold);
+  --border:        var(--hairline);
+  --border-strong: var(--hairline-strong);
+
+  /* ── Type families ────────────────────────────────────────────────────── */
+  --font-display: 'Cormorant Garamond', 'Times New Roman', serif;
+  --font-body:    'Manrope', ui-sans-serif, system-ui, sans-serif;
+  --font-mono:    'JetBrains Mono', ui-monospace, 'SFMono-Regular', monospace;
+
+  /* ── Type scale (mobile-first; designed at 390px wide) ────────────────── */
+  --fs-eyebrow:  11px;   /* mono, uppercase, tracked */
+  --fs-meta:     12px;   /* mono captions, dates */
+  --fs-body:     15px;   /* base body */
+  --fs-body-lg:  17px;
+  --fs-h4:       20px;
+  --fs-h3:       24px;
+  --fs-h2:       32px;
+  --fs-h1:       44px;
+  --fs-display:  64px;   /* hero moments */
+  --fs-mega:    104px;   /* poster/title — the "NHI" mark */
+
+  /* ── Tracking ─────────────────────────────────────────────────────────── */
+  --tr-tight:    -0.02em;
+  --tr-snug:     -0.01em;
+  --tr-normal:    0;
+  --tr-loose:     0.04em;
+  --tr-mono:      0.08em;   /* uppercase mono labels */
+  --tr-wide:      0.18em;   /* eyebrow / section labels */
+
+  /* ── Leading ──────────────────────────────────────────────────────────── */
+  --lh-display: 0.95;
+  --lh-tight:   1.1;
+  --lh-snug:    1.25;
+  --lh-body:    1.55;
+  --lh-loose:   1.75;
+
+  /* ── Spacing (4px base) ───────────────────────────────────────────────── */
+  --s-0:   0;
+  --s-1:   4px;
+  --s-2:   8px;
+  --s-3:   12px;
+  --s-4:   16px;
+  --s-5:   20px;
+  --s-6:   24px;
+  --s-8:   32px;
+  --s-10:  40px;
+  --s-12:  48px;
+  --s-16:  64px;
+  --s-20:  80px;
+  --s-24:  96px;
+  --s-32: 128px;
+
+  /* ── Radii — mostly sharp; rounding is rare ───────────────────────────── */
+  --r-0:    0;
+  --r-1:    2px;
+  --r-2:    4px;
+  --r-pill: 999px;
+
+  /* ── Borders ──────────────────────────────────────────────────────────── */
+  --bw-hair: 1px;
+  --bw-2:    2px;
+
+  /* ── Motion ───────────────────────────────────────────────────────────── */
+  --ease-out:    cubic-bezier(0.2, 0.7, 0.2, 1);
+  --ease-in-out: cubic-bezier(0.45, 0, 0.2, 1);
+  --dur-fast:   140ms;
+  --dur-base:   240ms;
+  --dur-slow:   480ms;
+  --dur-veil:   900ms;   /* image reveals, large fades */
+
+  /* ── Shadow (almost never used — light is mostly emissive/atmospheric) ── */
+  --shadow-1: 0 1px 0 rgba(0, 0, 0, 0.4);
+  --shadow-2: 0 12px 32px -12px rgba(0, 0, 0, 0.6);
+
+  /* ── Layout ───────────────────────────────────────────────────────────── */
+  --gutter:        20px;
+  --content-max:   720px;   /* desktop reading width — small on purpose */
+  --mobile-max:    430px;
+}
+
+/* =========================================================================
+   Resets & defaults
+   ========================================================================= */
+*,
+*::before,
+*::after { box-sizing: border-box; }
+
+html {
+  -webkit-text-size-adjust: 100%;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  text-rendering: optimizeLegibility;
+}
+
+body {
+  margin: 0;
+  background: var(--bg);
+  color: var(--fg);
+  font-family: var(--font-body);
+  font-size: var(--fs-body);
+  line-height: var(--lh-body);
+  font-weight: 300;
+  letter-spacing: var(--tr-snug);
+}
+
+/* =========================================================================
+   Semantic type roles
+   ========================================================================= */
+
+/* RULE — everything that isn't body is uppercase. Body is the only sentence-case role. */
+
+/* Mega — used for the artist mark, title slates */
+.t-mega {
+  font-family: var(--font-display);
+  font-weight: 300;
+  font-size: var(--fs-mega);
+  line-height: var(--lh-display);
+  letter-spacing: var(--tr-tight);
+  text-transform: uppercase;
+}
+
+/* Display — hero headings */
+.t-display, h1.t-display {
+  font-family: var(--font-display);
+  font-weight: 300;
+  font-style: italic;
+  font-size: var(--fs-display);
+  line-height: var(--lh-display);
+  letter-spacing: 0.02em;
+  text-transform: uppercase;
+}
+
+h1, .t-h1 {
+  font-family: var(--font-display);
+  font-weight: 300;
+  font-size: var(--fs-h1);
+  line-height: var(--lh-tight);
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  margin: 0;
+}
+
+h2, .t-h2 {
+  font-family: var(--font-display);
+  font-weight: 300;
+  font-size: var(--fs-h2);
+  line-height: var(--lh-tight);
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  margin: 0;
+}
+
+h3, .t-h3 {
+  font-family: var(--font-body);
+  font-weight: 500;
+  font-size: var(--fs-h3);
+  line-height: var(--lh-snug);
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  margin: 0;
+}
+
+h4, .t-h4 {
+  font-family: var(--font-body);
+  font-weight: 500;
+  font-size: var(--fs-h4);
+  line-height: var(--lh-snug);
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  margin: 0;
+}
+
+p, .t-body {
+  font-family: var(--font-body);
+  font-weight: 300;
+  font-size: var(--fs-body);
+  line-height: var(--lh-body);
+  letter-spacing: var(--tr-snug);
+  color: var(--fg-2);
+  margin: 0;
+}
+
+.t-body-lg {
+  font-size: var(--fs-body-lg);
+  line-height: var(--lh-body);
+}
+
+/* Eyebrow — mono, uppercase, wide-tracked. The "data" voice. */
+.t-eyebrow {
+  font-family: var(--font-mono);
+  font-weight: 400;
+  font-size: var(--fs-eyebrow);
+  line-height: 1;
+  letter-spacing: var(--tr-wide);
+  text-transform: uppercase;
+  color: var(--fg-muted);
+}
+
+/* Meta — small mono captions, dates, indices */
+.t-meta {
+  font-family: var(--font-mono);
+  font-weight: 400;
+  font-size: var(--fs-meta);
+  line-height: 1.4;
+  letter-spacing: var(--tr-mono);
+  color: var(--fg-muted);
+}
+
+/* Mono inline */
+code, kbd, samp, .t-mono {
+  font-family: var(--font-mono);
+  font-size: 0.9em;
+  letter-spacing: var(--tr-mono);
+}
+
+/* Italic display moments — single-word emphasis */
+.t-italic {
+  font-family: var(--font-display);
+  font-style: italic;
+  font-weight: 300;
+}
+
+/* =========================================================================
+   Atmosphere — grain overlay (used on dark surfaces for film/print feel)
+   ========================================================================= */
+.atmos {
+  position: relative;
+  isolation: isolate;
+}
+.atmos::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  z-index: 1;
+  background-image: radial-gradient(rgba(241, 236, 225, 0.05) 1px, transparent 1px);
+  background-size: 3px 3px;
+  mix-blend-mode: overlay;
+  opacity: 0.6;
+}
+
+/* =========================================================================
+   Selection
+   ========================================================================= */
+::selection {
+  background: var(--ember);
+  color: var(--bone);
+}

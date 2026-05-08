@@ -1,0 +1,146 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <title>NHI — Mobile Site UI Kit</title>
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <link rel="stylesheet" href="../../colors_and_type.css">
+  <style>
+    html, body { height: 100%; }
+    body {
+      background: #1c1916;
+      display: flex; align-items: center; justify-content: center;
+      padding: 24px;
+      min-height: 100vh;
+    }
+    .stage {
+      width: 390px; height: 844px;
+      background: var(--ink);
+      position: relative;
+      overflow: hidden;
+      box-shadow: 0 40px 100px -30px rgba(0,0,0,0.8);
+      border-radius: 32px;
+      isolation: isolate;
+    }
+    .scroller {
+      position: absolute; inset: 0;
+      overflow-y: auto;
+      scrollbar-width: none;
+    }
+    .scroller::-webkit-scrollbar { display: none; }
+    /* page transition veil */
+    .veil {
+      position: absolute; inset: 0;
+      background: var(--ink);
+      pointer-events: none;
+      opacity: 0;
+      transition: opacity 280ms var(--ease-out);
+      z-index: 60;
+    }
+    .veil.on { opacity: 1; }
+    @media (max-width: 480px) {
+      body { padding: 0; background: var(--ink); }
+      .stage { width: 100vw; height: 100vh; border-radius: 0; box-shadow: none; }
+    }
+  </style>
+</head>
+<body>
+  <div class="stage" id="stage">
+    <div id="root"></div>
+  </div>
+
+  <script src="https://unpkg.com/react@18.3.1/umd/react.development.js" integrity="sha384-hD6/rw4ppMLGNu3tX5cjIb+uRZ7UkRJ6BPkLpg4hAu/6onKUg4lLsHAs9EBPT82L" crossorigin="anonymous"></script>
+  <script src="https://unpkg.com/react-dom@18.3.1/umd/react-dom.development.js" integrity="sha384-u6aeetuaXnQ38mYT8rp6sbXaQe3NL9t+IBXmnYxwkUI2Hw4bsp2Wvmx4yRQF1uAm" crossorigin="anonymous"></script>
+  <script src="https://unpkg.com/@babel/standalone@7.29.0/babel.min.js" integrity="sha384-m08KidiNqLdpJqLq95G/LEi8Qvjl/xUYll3QILypMoQ65QorJ9Lvtp2RXYGBFj1y" crossorigin="anonymous"></script>
+
+  <script type="text/babel" src="Primitives.jsx"></script>
+  <script type="text/babel" src="Surfaces.jsx"></script>
+  <script type="text/babel" src="Screens.jsx"></script>
+
+  <script type="text/babel">
+    const { useState, useEffect, useRef } = React;
+
+    function App() {
+      const [route, setRoute] = useState('home');
+      const [scrolled, setScrolled] = useState(false);
+      const [activeIndex, setActiveIndex] = useState(0);
+      const [playing, setPlaying] = useState(false);
+      const [progress, setProgress] = useState(0.18);
+      const [transit, setTransit] = useState(false);
+      const scrollerRef = useRef(null);
+
+      useEffect(() => {
+        const el = scrollerRef.current;
+        if (!el) return;
+        const onScroll = () => setScrolled(el.scrollTop > 40);
+        el.addEventListener('scroll', onScroll, { passive: true });
+        return () => el.removeEventListener('scroll', onScroll);
+      }, []);
+
+      // Fake progress when playing
+      useEffect(() => {
+        if (!playing) return;
+        const id = setInterval(() => {
+          setProgress(p => (p >= 1 ? 0 : p + 0.003));
+        }, 200);
+        return () => clearInterval(id);
+      }, [playing]);
+
+      const navigate = (r) => {
+        if (r === route) return;
+        setTransit(true);
+        setTimeout(() => {
+          setRoute(r === 'listen' ? 'listen' : r);
+          if (scrollerRef.current) scrollerRef.current.scrollTop = 0;
+          setScrolled(false);
+        }, 200);
+        setTimeout(() => setTransit(false), 460);
+      };
+
+      const onPlay = (i) => {
+        setActiveIndex(i);
+        setPlaying(true);
+        setProgress(0);
+      };
+
+      const track = TRACKS[activeIndex] ? {
+        title: TRACKS[activeIndex].title,
+        artist: 'nhi',
+        duration: TRACKS[activeIndex].duration,
+        position: formatTime(parseDuration(TRACKS[activeIndex].duration) * progress),
+      } : null;
+
+      return (
+        <>
+          <TopNav active={route} onNavigate={navigate} scrolled={scrolled || route !== 'home'} />
+          <div className="scroller" ref={scrollerRef}>
+            {route === 'home'   && <HomeScreen onPlay={onPlay} />}
+            {route === 'listen' && <ListenScreen activeIndex={activeIndex} onPlay={onPlay} />}
+            {route === 'shows'  && <ShowsScreen />}
+            {route === 'about'  && <AboutScreen />}
+          </div>
+          <AudioBar
+            track={track}
+            playing={playing}
+            onToggle={() => setPlaying(p => !p)}
+            progress={progress}
+          />
+          <div className={`veil ${transit ? 'on' : ''}`} />
+        </>
+      );
+    }
+
+    function parseDuration(s) {
+      const [m, sec] = s.split(':').map(Number);
+      return m * 60 + sec;
+    }
+    function formatTime(t) {
+      const m = Math.floor(t / 60);
+      const s = Math.floor(t % 60);
+      return `${m}:${String(s).padStart(2, '0')}`;
+    }
+
+    ReactDOM.createRoot(document.getElementById('root')).render(<App />);
+  </script>
+</body>
+</html>
