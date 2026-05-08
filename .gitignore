@@ -8,6 +8,9 @@ dist
 *.log
 npm-debug.log*
 
-# original masters — keep mp3/mp4 transcodes only
-/I Need a Forest Fire [NHI Flip].wav
+# original masters live in /masters/ and are not committed
+/masters/
 /cachenpm
+
+# the WAV is too big to commit but is served from public for hi-fi swap
+/public/audio/*.wav

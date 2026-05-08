@@ -1,12 +1,12 @@
 export default function TopBar() {
   return (
-    <header className="topbar">
-      <a className="gamut-mark" href="/" aria-label="nhi — home">
-        <img src="/the-gamut.jpg" alt="" />
-      </a>
-      <div className="broadcast">
-        <span className="dot" aria-hidden="true" />
-        <span>broadcasting</span>
+    <header className="rail rail-top" role="banner">
+      <div className="rail-inner">
+        <span className="rail-cap left">nhi · transmission 001</span>
+        <span className="rail-rule" aria-hidden="true">
+          <span className="rail-tick" />
+        </span>
+        <span className="rail-cap right">austin · tx</span>
       </div>
     </header>
   );

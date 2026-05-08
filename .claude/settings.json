@@ -20,10 +20,27 @@
       "Bash(mkdir -p \"d:\\\\source\\\\nhi-website\\\\public\" && mv \"d:\\\\source\\\\nhi-website\\\\assets\\\\i-need-a-forest-fire-nhi-flip.mp3\" \"d:\\\\source\\\\nhi-website\\\\assets\\\\burning-tree-1080p.mp4\" \"d:\\\\source\\\\nhi-website\\\\assets\\\\burning-tree-720p.mp4\" \"d:\\\\source\\\\nhi-website\\\\public\\\\\" && cp \"d:\\\\source\\\\nhi-website\\\\design_system\\\\assets\\\\the-gamut.jpg\" \"d:\\\\source\\\\nhi-website\\\\public\\\\the-gamut.jpg\" && rmdir \"d:\\\\source\\\\nhi-website\\\\assets\" && ls -la \"d:\\\\source\\\\nhi-website\\\\public\")",
       "Bash(git init *)",
       "Bash(git add *)",
-      "Bash(git -c user.email=ben@forcemajeure.vip -c user.name=\"ben\" commit -q -m \"initial scaffold: vite + react, concept B layout, audio bar, burning tree video\")"
+      "Bash(git -c user.email=ben@forcemajeure.vip -c user.name=\"ben\" commit -q -m \"initial scaffold: vite + react, concept B layout, audio bar, burning tree video\")",
+      "Bash(start \"\" \"http://localhost:5173\")",
+      "Bash(ffprobe -hide_banner -v error -show_entries stream=codec_name,width,height -of default=nw=1 \"d:/source/nhi-website/I Need a Forest Fire [NHI Flip][Album Art].png\")",
+      "Bash(ffmpeg -hide_banner -loglevel error -y -i \"d:/source/nhi-website/I Need a Forest Fire [NHI Flip][Album Art].png\" -vf \"scale=1024:1024:flags=lanczos\" -q:v 4 \"d:/source/nhi-website/public/forest-fire-art.jpg\")",
+      "Bash(ffmpeg -hide_banner -loglevel error -y -i burning-tree-1080p.mp4 -filter_complex \"[0:v]reverse[r];[0:v][r]concat=n=2:v=1[v]\" -map \"[v]\" -c:v libx264 -preset slow -crf 23 -pix_fmt yuv420p -profile:v high -level 4.0 -movflags +faststart -an burning-tree-1080p-boomerang.mp4)",
+      "Bash(ffmpeg -hide_banner -loglevel error -y -i burning-tree-720p.mp4 -filter_complex \"[0:v]reverse[r];[0:v][r]concat=n=2:v=1[v]\" -map \"[v]\" -c:v libx264 -preset slow -crf 24 -pix_fmt yuv420p -profile:v high -level 4.0 -movflags +faststart -an burning-tree-720p-boomerang.mp4)",
+      "Bash(ffprobe -hide_banner -v error -show_entries format=duration,size,bit_rate -of default=nw=1 \"d:/source/nhi-website/public/burning-tree-1080p-boomerang.mp4\")",
+      "Bash(cp \"d:/source/nhi-website/I Need a Forest Fire [NHI Flip].wav\" \"d:/source/nhi-website/public/I Need a Forest Fire [NHI Flip].wav\" && ls -la \"d:/source/nhi-website/public\" 2>&1 | head -10)",
+      "Bash(ffprobe -hide_banner -v error -show_entries stream=codec_name,width,height,pix_fmt -of default=nw=1 \"d:/source/nhi-website/FM white icon \\(depth\\).png\")",
+      "Bash(ffmpeg -hide_banner -loglevel error -y -i \"d:/source/nhi-website/FM white icon \\(depth\\).png\" -vf \"scale=-1:48:flags=lanczos\" \"d:/source/nhi-website/public/fm-mark.png\")",
+      "Bash(ffprobe -hide_banner -v error -show_entries stream=width,height -of default=nw=1 \"d:/source/nhi-website/FM white icon \\(depth\\).png\" \"d:/source/nhi-website/public/fm-mark.png\")",
+      "Bash(ffprobe -hide_banner -v error -show_entries stream=width,height -of default=nw=1 \"d:/source/nhi-website/FM white icon \\(depth\\).png\")",
+      "Bash(ffprobe -hide_banner -v error -show_entries stream=width,height -of default=nw=1 \"d:/source/nhi-website/public/fm-mark.png\")",
+      "Bash(cd \"d:/source/nhi-website/public\" && mkdir -p audio video images && mv \"I Need a Forest Fire [NHI Flip].wav\" audio/ && mv \"i-need-a-forest-fire-nhi-flip.mp3\" audio/ && mv \"burning-tree-1080p-boomerang.mp4\" video/ && mv \"burning-tree-720p-boomerang.mp4\" video/ && mv \"the-gamut.jpg\" \"forest-fire-art.jpg\" \"fm-mark.png\" images/ && ls -la audio video images)",
+      "Bash(cd \"d:/source/nhi-website\" && mkdir -p masters && mv \"I Need a Forest Fire [NHI Flip].wav\" \"I Need a Forest Fire [NHI Flip][Album Art].png\" \"FM white icon \\(depth\\).png\" \"nhi_pfp.jpg\" masters/ && ls masters)",
+      "Bash(git check-ignore *)"
     ],
     "additionalDirectories": [
-      "d:\\source\\nhi-website"
+      "d:\\source\\nhi-website",
+      "D:\\source\\nhi-website",
+      "D:\\source\\nhi-website\\public"
     ]
   }
 }
