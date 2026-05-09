@@ -10,7 +10,9 @@ export const NOW_PLAYING = {
   flipTag: 'nhi flip',
   attribution: 'james blake · bon iver',
   src: '/audio/i-need-a-forest-fire-nhi-flip.mp3',
-  hifiSrc: '/audio/I%20Need%20a%20Forest%20Fire%20%5BNHI%20Flip%5D.wav',
+  // hifiSrc: leave null until the lossless master is hosted (e.g. on R2).
+  // The audio bar's swap logic is dormant when this is missing.
+  hifiSrc: null,
   art: '/images/forest-fire-art.jpg',
   trackUrl: 'https://soundcloud.com/nhi-dj/i-need-a-forest-fire',
 };

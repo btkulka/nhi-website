@@ -12,5 +12,8 @@ npm-debug.log*
 /masters/
 /cachenpm
 
-# the WAV is too big to commit but is served from public for hi-fi swap
+# lossless masters are too big to commit; ship the mp3 transcode only
 /public/audio/*.wav
+/public/audio/*.aiff
+/public/audio/*.aif
+/public/audio/*.flac
