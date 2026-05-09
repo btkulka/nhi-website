@@ -15,8 +15,8 @@ describe('<App />', () => {
 
   it('wires every content link into the page', () => {
     render(<App />);
-    for (const { platform, href } of LINKS) {
-      expect(screen.getByLabelText(platform)).toHaveAttribute('href', href);
+    for (const { platform, href, label } of LINKS) {
+      expect(screen.getByLabelText(label || platform)).toHaveAttribute('href', href);
     }
   });
 });

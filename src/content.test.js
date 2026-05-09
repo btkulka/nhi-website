@@ -9,9 +9,9 @@ describe('LINKS', () => {
     );
   });
 
-  it('every link has a valid https url', () => {
+  it('every link uses an https or mailto url', () => {
     for (const link of LINKS) {
-      expect(link.href).toMatch(/^https:\/\//);
+      expect(link.href).toMatch(/^(https:\/\/|mailto:)/);
     }
   });
 });
