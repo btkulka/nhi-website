@@ -53,7 +53,14 @@
       "Bash(nslookup -type=cname nhi-dj.com)",
       "Bash(nslookup nhi-website.pages.dev)",
       "Bash(npm view *)",
-      "WebFetch(domain:www.npmjs.com)"
+      "WebFetch(domain:www.npmjs.com)",
+      "mcp__cloudflare-builds__accounts_list",
+      "mcp__cloudflare-builds__set_active_account",
+      "Bash(npm ci *)",
+      "Bash(tasklist /FI \"IMAGENAME eq node.exe\")",
+      "PowerShell(Get-Process node -ErrorAction SilentlyContinue)",
+      "PowerShell(Get-NetTCPConnection -LocalPort 5173 -ErrorAction SilentlyContinue | Select-Object OwningProcess | ForEach-Object { Get-Process -Id $_.OwningProcess | Select-Object Id, Path, StartTime } | Format-List)",
+      "PowerShell(Stop-Process -Id 59376 -Force -ErrorAction SilentlyContinue)"
     ],
     "additionalDirectories": [
       "d:\\source\\nhi-website",
