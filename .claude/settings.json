@@ -47,7 +47,13 @@
       "Bash(rm \"masters/I Need a Forest Fire [NHI Flip].wav\" \"public/audio/i-need-a-forest-fire-nhi-flip.mp3\")",
       "Bash(ffprobe -hide_banner -v error -show_entries stream=codec_name,sample_rate,channels,bits_per_sample -show_entries format=duration,size -of default=nw=1 \"d:/source/nhi-website/masters/I Need a Forest Fire [NHI Flip].aiff\")",
       "Bash(ffmpeg -hide_banner -loglevel error -y -i \"d:/source/nhi-website/masters/I Need a Forest Fire [NHI Flip].aiff\" -vn -map 0:a -codec:a libmp3lame -b:a 192k -ar 44100 \"d:/source/nhi-website/public/audio/i-need-a-forest-fire-nhi-flip.mp3\")",
-      "Bash(ffprobe -hide_banner -v error -show_entries format=duration,size,bit_rate -show_entries stream=codec_name,sample_rate,channels -of default=nw=1 \"d:/source/nhi-website/public/audio/i-need-a-forest-fire-nhi-flip.mp3\")"
+      "Bash(ffprobe -hide_banner -v error -show_entries format=duration,size,bit_rate -show_entries stream=codec_name,sample_rate,channels -of default=nw=1 \"d:/source/nhi-website/public/audio/i-need-a-forest-fire-nhi-flip.mp3\")",
+      "WebFetch(domain:developers.cloudflare.com)",
+      "Bash(nslookup nhi-dj.com)",
+      "Bash(nslookup -type=cname nhi-dj.com)",
+      "Bash(nslookup nhi-website.pages.dev)",
+      "Bash(npm view *)",
+      "WebFetch(domain:www.npmjs.com)"
     ],
     "additionalDirectories": [
       "d:\\source\\nhi-website",

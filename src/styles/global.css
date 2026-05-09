@@ -740,28 +740,54 @@ body > #vignette,
               filter 320ms var(--ease-out);
   display: block;
 }
+/*
+  Right side of each link row. Shows a faint em-dash leader at rest;
+  on hover, the leader fades out and the platform handle (e.g.
+  @nhi.wav, management@forcemajeure.vip) fades in, right-aligned.
+  Both children share a single grid cell so width is stable.
+*/
+.link .link-trail {
+  position: relative;
+  display: inline-grid;
+  grid-template-columns: 1fr;
+  justify-items: end;
+  align-items: center;
+  min-width: 32px;
+}
+.link .link-trail > * {
+  grid-column: 1;
+  grid-row: 1;
+}
 .link .leader {
   color: var(--bone-4);
   letter-spacing: 0.1em;
   font-size: 10px;
-  transition: color 320ms var(--ease-out),
-              letter-spacing 320ms var(--ease-out),
+  opacity: 1;
+  transition: opacity 240ms var(--ease-out),
               transform 320ms var(--ease-out);
 }
-.link:hover {
-  color: var(--ember);
-  padding-left: 6px;
+.link .handle {
+  font-family: var(--font-mono);
+  font-size: 10px;
+  letter-spacing: 0.08em;
+  text-transform: lowercase;
+  color: var(--bone-3);
+  opacity: 0;
+  transform: translateX(4px);
+  transition: opacity 320ms var(--ease-out),
+              transform 320ms var(--ease-out),
+              color 320ms var(--ease-out);
+  white-space: nowrap;
+  pointer-events: none;
 }
+.link:hover { color: var(--ember); padding-left: 6px; }
 .link:hover .icon {
   color: var(--ember);
   transform: scale(1.1);
   filter: drop-shadow(0 0 6px rgba(201, 56, 41, 0.55));
 }
-.link:hover .leader {
-  color: var(--ember);
-  letter-spacing: 0.18em;
-  transform: translateX(4px);
-}
+.link:hover .leader { opacity: 0; transform: translateX(-4px); }
+.link:hover .handle { opacity: 1; transform: translateX(0); color: var(--ember); }
 .link:active { transform: scale(0.99); }
 .link:focus-visible { outline: 1px solid var(--ember); outline-offset: 4px; }
 

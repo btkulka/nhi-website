@@ -1,8 +1,9 @@
 export const LINKS = [
-  { platform: 'spotify',    href: 'https://open.spotify.com/artist/5FT7FmovNNObOlH1mwRWxR?si=PQnJ4LL0T2m3fSguJ8Ehuw' },
-  { platform: 'soundcloud', href: 'https://soundcloud.com/nhi-dj' },
-  { platform: 'instagram',  href: 'https://instagram.com/nhi.wav' },
-  { platform: 'tiktok',     href: 'https://tiktok.com/@nhi.wav' },
+  { platform: 'spotify',    handle: 'nhi',                            href: 'https://open.spotify.com/artist/5FT7FmovNNObOlH1mwRWxR?si=PQnJ4LL0T2m3fSguJ8Ehuw' },
+  { platform: 'soundcloud', handle: '@nhi-dj',                        href: 'https://soundcloud.com/nhi-dj' },
+  { platform: 'instagram',  handle: '@nhi.wav',                       href: 'https://instagram.com/nhi.wav' },
+  { platform: 'tiktok',     handle: '@nhi.wav',                       href: 'https://tiktok.com/@nhi.wav' },
+  { platform: 'email',      handle: 'management@forcemajeure.vip',    href: 'mailto:management@forcemajeure.vip', label: 'management' },
 ];
 
 export const NOW_PLAYING = {
