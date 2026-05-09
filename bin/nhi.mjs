@@ -37,9 +37,10 @@ if (!root) die('must be run from within the nhi-website project');
 process.chdir(root);
 
 function runNpm(args) {
-  const cmd = process.platform === 'win32' ? 'npm.cmd' : 'npm';
+  const isWin = process.platform === 'win32';
+  const cmd = isWin ? 'npm.cmd' : 'npm';
   return new Promise((resolve) => {
-    const child = spawn(cmd, args, { stdio: 'inherit' });
+    const child = spawn(cmd, args, { stdio: 'inherit', shell: isWin });
     child.on('exit', (code) => resolve(code ?? 0));
     child.on('error', (err) => die(`failed to run npm: ${err.message}`));
   });

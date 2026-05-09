@@ -60,7 +60,11 @@
       "Bash(tasklist /FI \"IMAGENAME eq node.exe\")",
       "PowerShell(Get-Process node -ErrorAction SilentlyContinue)",
       "PowerShell(Get-NetTCPConnection -LocalPort 5173 -ErrorAction SilentlyContinue | Select-Object OwningProcess | ForEach-Object { Get-Process -Id $_.OwningProcess | Select-Object Id, Path, StartTime } | Format-List)",
-      "PowerShell(Stop-Process -Id 59376 -Force -ErrorAction SilentlyContinue)"
+      "PowerShell(Stop-Process -Id 59376 -Force -ErrorAction SilentlyContinue)",
+      "Bash(nslookup nhi-dj.com 1.1.1.1)",
+      "Bash(nslookup www.nhi-dj.com 1.1.1.1)",
+      "Bash(nslookup -type=ANY nhi-dj.com lewis.ns.cloudflare.com)",
+      "Bash(where.exe nhi *)"
     ],
     "additionalDirectories": [
       "d:\\source\\nhi-website",
