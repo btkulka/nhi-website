@@ -22,7 +22,7 @@ const buildBaseline = (count) => {
   return out;
 };
 
-export default function AudioBar({ track }) {
+function Player({ track }) {
   const audioRef = useRef(null);
   const ctxRef = useRef(null);
   const analyserRef = useRef(null);
@@ -289,10 +289,10 @@ export default function AudioBar({ track }) {
 
         <div className="meta-panel">
           <div className="meta-title">{track.title}</div>
-          <div className="meta-flip"><span className="red">{track.flipTag}</span></div>
-          {track.attribution && (
+          {track.tag && <div className="meta-flip"><span className="meta-tag">{track.tag}</span></div>}
+          {track.credit && (
             <div className="meta-attribution">
-              {track.attribution}
+              {track.credit}
               {hifi && <span className="hifi-tag" aria-label="hi-fi master"> · hi-fi</span>}
             </div>
           )}
@@ -341,4 +341,10 @@ export default function AudioBar({ track }) {
       <audio ref={audioRef} src={track.src} preload="metadata" crossOrigin="anonymous" />
     </div>
   );
+}
+
+// The bar only exists when the dashboard set a now_playing track.
+export default function AudioBar({ track }) {
+  if (!track) return null;
+  return <Player track={track} />;
 }

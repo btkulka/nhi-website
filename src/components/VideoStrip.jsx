@@ -1,18 +1,20 @@
 import { useEffect, useRef } from 'react';
 import PlatformIcon from './PlatformIcon.jsx';
-import { NOW_PLAYING } from '../content.js';
 
-// Boomerang video. Source mp4 is forward + reverse concatenated, playing on loop.
-// We modulate playbackRate so the speed eases out into each turn (file start,
-// midpoint, file end → wraps to start) and eases back in.
+// Featured media for the first screen. With a canvas video it plays as a
+// boomerang: the mp4 is forward + reverse concatenated, looping, and we
+// modulate playbackRate so the speed eases out into each turn (file start,
+// midpoint, file end → wraps to start) and eases back in. Without a video
+// the same frame holds the cover art.
 const MIN_RATE = 0.15;
 const EASE_WINDOW = 1.5; // seconds — ease zone on each side of every boundary
 
 const easeOutCubic = (t) => 1 - Math.pow(1 - t, 3);
 
-export default function VideoStrip() {
+export default function VideoStrip({ track }) {
   const videoRef = useRef(null);
   const rafRef = useRef(0);
+  const hasVideo = Boolean(track?.video?.src);
 
   useEffect(() => {
     const v = videoRef.current;
@@ -39,38 +41,46 @@ export default function VideoStrip() {
     };
     rafRef.current = requestAnimationFrame(tick);
     return () => cancelAnimationFrame(rafRef.current);
-  }, []);
+  }, [hasVideo]);
+
+  if (!track) return null;
+
+  const href = track.trackUrl || null;
+  const onSoundcloud = /soundcloud\.com/i.test(href ?? '');
+  const label = onSoundcloud ? `open ${track.title} on soundcloud` : `open ${track.title}`;
+  const Frame = href ? 'a' : 'div';
+  const frameProps = href
+    ? { href, target: '_blank', rel: 'noopener noreferrer', 'aria-label': label }
+    : { 'aria-label': track.title };
 
   return (
-    <a
-      className="video-strip"
-      href={NOW_PLAYING.trackUrl}
-      target="_blank"
-      rel="noopener noreferrer"
-      aria-label="open i need a forest fire on soundcloud"
-      data-spark
-    >
-      <video
-        ref={videoRef}
-        autoPlay
-        muted
-        loop
-        playsInline
-        preload="auto"
-        poster="/images/the-gamut.jpg"
-      >
-        <source src="/video/burning-tree-1080p-boomerang.mp4" type="video/mp4" media="(min-width: 481px)" />
-        <source src="/video/burning-tree-720p-boomerang.mp4"  type="video/mp4" />
-      </video>
+    <Frame className="video-strip" {...frameProps} data-spark>
+      {hasVideo ? (
+        <video
+          ref={videoRef}
+          autoPlay
+          muted
+          loop
+          playsInline
+          preload="auto"
+          poster={track.video.poster || track.art}
+        >
+          <source src={track.video.src} type="video/mp4" />
+        </video>
+      ) : (
+        <img className="video-still" src={track.art} alt="" decoding="async" />
+      )}
 
-      <span className="video-sc-mark" aria-hidden="true">
-        <PlatformIcon platform="soundcloud" />
-      </span>
+      {href && (
+        <span className="video-sc-mark" aria-hidden="true">
+          <PlatformIcon platform={onSoundcloud ? 'soundcloud' : 'other'} />
+        </span>
+      )}
 
       <div className="video-labels">
-        <span className="video-label video-label--new">new</span>
-        <span className="video-label video-label--title">i need a forest fire [nhi flip]</span>
+        <span className="video-label video-label--new">featured</span>
+        <span className="video-label video-label--title">{track.title}</span>
       </div>
-    </a>
+    </Frame>
   );
 }

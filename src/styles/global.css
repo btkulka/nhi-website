@@ -1,11 +1,17 @@
 /* nhi — global styles. Imports the design system foundation, then page styles. */
 @import url('./tokens.css');
 
+/*
+  The page scrolls. The first screen is the top rail + the hero (wordmark,
+  featured media, audio bar) at exactly one viewport; the releases, the next
+  line, the link list and the footer rail follow in normal flow. Everything
+  sits in one centred column (--col-max) over the fixed smoke background.
+*/
 html, body {
-  height: 100%;
-  overscroll-behavior: none;
+  min-height: 100%;
+  overscroll-behavior-y: none;
 }
-html { background: #020201; }
+html { background: var(--ink); }
 
 /* ─────────── swirling smoke background ─────────── */
 /*
@@ -13,19 +19,18 @@ html { background: #020201; }
   on its own timeline (45s and 70s, alternating directions) so the
   composite is constantly shifting without ever repeating the same shape.
   The clouds use a near-black tint (warmer ash) so the field stays dark.
+  Both are fixed to the viewport, so they do not scroll with the page.
 */
 body {
   margin: 0;
   width: 100%;
-  height: 100dvh;
-  background-color: #020201; /* near-pitch base */
+  background-color: var(--ink);
   color: var(--fg);
   font-family: var(--font-body);
   font-size: var(--fs-body);
   font-weight: 300;
   letter-spacing: var(--tr-snug);
   position: relative;
-  overflow: hidden;
 }
 body::before {
   content: "";
@@ -79,10 +84,21 @@ body::after {
   75%  { transform: translate3d( 2%, -4%, 0) rotate(-10deg) scale(1.12); }
   100% { transform: translate3d( 0%,  0%, 0) rotate(  0deg) scale(1.02); }
 }
+@media (prefers-reduced-motion: reduce) {
+  body::before, body::after { animation: none; }
+}
 
-/* hard vignette overlay so corners stay pitch */
-body > #vignette,
-.stage::before {
+/*
+  Hard vignette so the corners stay pitch. It lives on #root (not on the
+  animated .app) so position: fixed really means the viewport.
+*/
+#root {
+  width: 100%;
+  min-height: 100svh;
+  position: relative;
+  z-index: 1;
+}
+#root::before {
   content: "";
   position: fixed;
   inset: 0;
@@ -91,39 +107,25 @@ body > #vignette,
   background:
     radial-gradient(140% 90% at 50% 50%, transparent 0%, rgba(3, 3, 2, 0.78) 60%, rgba(3, 3, 2, 0.98) 100%);
 }
-@media (prefers-reduced-motion: reduce) {
-  body::before, body::after { animation: none; }
-}
 
-#root {
-  width: 100%;
-  height: 100dvh;
-  position: relative;
-  z-index: 1;
-}
-
-/* ─────────── app: page-level grid spanning the viewport ─────────── */
+/* ─────────── app: a column that is at least one viewport tall ─────────── */
 .app {
+  position: relative;
   width: 100%;
-  height: 100dvh;
-  display: grid;
-  grid-template-rows: auto minmax(0, 1fr) auto;
+  min-height: 100svh;
+  display: flex;
+  flex-direction: column;
   padding-top: env(safe-area-inset-top);
   padding-bottom: env(safe-area-inset-bottom);
   animation: stage-in 900ms var(--ease-out) both;
 }
 @keyframes stage-in {
-  from { opacity: 0; transform: translateY(6px); }
-  to   { opacity: 1; transform: translateY(0); }
+  from { opacity: 0; }
+  to   { opacity: 1; }
 }
-
-/* ─────────── stage: middle row, content centered + capped ─────────── */
-.stage {
+.app > main {
   width: 100%;
-  min-height: 0;       /* allow grid row to shrink so content fits viewport */
-  display: flex;
-  justify-content: center;
-  align-items: center;
+  flex: 1 0 auto;
 }
 
 /* ─────────── pulse keyframes (used by rails, video label) ─────────── */
@@ -152,15 +154,16 @@ body > #vignette,
 }
 .rail-inner {
   width: 100%;
-  max-width: 430px;
+  max-width: var(--col-max);
+  height: var(--rail-h);
   display: grid;
   grid-template-columns: auto 1fr auto;
   align-items: center;
   gap: var(--s-3);
-  padding: var(--s-4) var(--s-8);
+  padding: 0 var(--s-8);
 }
 .rail-top    { border-bottom: 1px solid var(--hairline); }
-.rail-bottom { border-top:    1px solid var(--hairline); }
+.rail-bottom { border-top:    1px solid var(--hairline); margin-top: auto; }
 .rail-cap {
   white-space: nowrap;
   transition: color 320ms var(--ease-out);
@@ -173,20 +176,21 @@ body > #vignette,
   height: 1px;
   background: linear-gradient(to right,
     transparent 0%,
-    rgba(241, 236, 225, 0.18) 20%,
-    rgba(241, 236, 225, 0.18) 80%,
+    rgba(247, 248, 249, 0.18) 20%,
+    rgba(247, 248, 249, 0.18) 80%,
     transparent 100%);
   display: flex;
   align-items: center;
   justify-content: center;
 }
+/* The tick breathes in bone; the only ember on the first screen is the h. */
 .rail-tick {
   position: absolute;
-  width: 6px;
-  height: 6px;
+  width: 5px;
+  height: 5px;
   border-radius: 999px;
-  background: var(--ember);
-  box-shadow: 0 0 8px rgba(201, 56, 41, 0.65);
+  background: var(--bone-3);
+  box-shadow: 0 0 8px rgba(247, 248, 249, 0.35);
   animation: pulse 2.4s var(--ease-in-out) infinite;
 }
 .rail-tick::after {
@@ -194,63 +198,36 @@ body > #vignette,
   position: absolute;
   inset: -2px;
   border-radius: 999px;
-  border: 1px solid var(--ember);
+  border: 1px solid var(--bone-3);
   opacity: 0;
   animation: ping 2.4s var(--ease-out) infinite;
 }
 
-/* FM mark — bone-tinted, sits in the bottom rail's center */
-.fm-mark {
-  position: absolute;
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
-  height: 22px;
-  background: var(--ink);
-  padding: 2px 6px;
-  text-decoration: none;
-  isolation: isolate;
-  transition: transform 320ms var(--ease-out), opacity 320ms var(--ease-out);
-  opacity: 0.85;
-}
-.fm-mark img {
-  height: 100%;
-  width: auto;       /* preserve native aspect ratio (~0.62) */
-  display: block;
-  object-fit: contain;
-  /* The PNG is white on transparent. Drop saturation toward warm bone */
-  filter: brightness(0.94) saturate(0.6) sepia(0.18);
-  transition: filter 320ms var(--ease-out);
-}
-.fm-mark:hover { transform: scale(1.08); opacity: 1; }
-.fm-mark:hover img { filter: brightness(1) saturate(1) sepia(0); }
-.fm-mark:focus-visible { outline: 1px solid var(--ember); outline-offset: 3px; }
-
-/* ─────────── main grid ─────────── */
+/* ─────────── hero: the first screen ─────────── */
 /*
-  Two columns. Wordmark spans rows 1–2 on the left.
-  Row 1: video (right column only) — flexible, fills remaining height.
-  Row 2: audio bar — full width.
-  Row 3: link list — full width.
-  Total height matches the stage (which is 100dvh minus the two rails).
+  Two columns. Wordmark spans row 1 on the left; the featured media fills the
+  right column of row 1; the audio bar (when present) makes an implicit row 2
+  across both columns. The hero is at least one viewport minus the top rail,
+  so the fold lands right under the audio bar.
 */
-.grid {
+.hero {
+  width: 100%;
+  max-width: var(--col-max);
+  margin: 0 auto;
+  min-height: calc(100svh - var(--rail-h) - env(safe-area-inset-top, 0px));
   display: grid;
   grid-template-columns: 78px 1fr;
-  grid-template-rows: minmax(0, 1fr) auto auto;
-  padding: var(--s-12) var(--s-8);
+  grid-template-rows: minmax(0, 1fr);
+  grid-auto-rows: auto;
+  padding: var(--s-12) var(--s-8) var(--s-10);
   column-gap: var(--s-5);
   row-gap: var(--s-10);
-  width: 100%;
-  max-width: 430px;
-  height: 100%;
-  min-height: 0;
 }
 /*
-  Wordmark stack: shares row 1 with the video. We use a 3-row sub-grid sized
-  by the parent row's height. Each letter is a flex cell that paints the
-  glyph centered, with overflow clipping so the descender on `n`/`h` doesn't
-  push out of the stack's vertical bounds and break alignment with the image.
+  Wordmark stack: shares row 1 with the media. A 3-row sub-grid sized by the
+  parent row's height. Each letter is a flex cell that paints the glyph
+  centered, with overflow clipping so the descender on `n`/`h` doesn't push
+  out of the stack's vertical bounds and break alignment with the image.
 */
 .stack {
   grid-column: 1;
@@ -267,7 +244,7 @@ body > #vignette,
   font-weight: 300;
   /* Letter glyph height ≈ font-size · 0.72 (cap → baseline) for serif italics.
      We size the font so 3 stacked letters with line-height 1 fit the row. */
-  font-size: clamp(58px, 14vh, 130px);
+  font-size: clamp(58px, 14svh, 130px);
   line-height: 1;
   letter-spacing: -0.02em;
   color: var(--bone);
@@ -285,17 +262,18 @@ body > #vignette,
   animation-delay: var(--phase, 0s);
   will-change: transform, opacity;
 }
+/* the one accent-coloured mark on the first screen */
 .stack .letter.red {
   color: var(--ember);
-  text-shadow: 0 0 22px rgba(201, 56, 41, 0.0);
+  text-shadow: 0 0 22px rgba(205, 45, 68, 0.0);
 }
 .stack .letter:hover {
   color: var(--ember);
-  text-shadow: 0 0 24px rgba(201, 56, 41, 0.45);
+  text-shadow: 0 0 24px rgba(205, 45, 68, 0.45);
   transform: translateY(-2px) rotate(-1.5deg);
 }
 .stack .letter.red:hover {
-  text-shadow: 0 0 28px rgba(201, 56, 41, 0.7);
+  text-shadow: 0 0 28px rgba(205, 45, 68, 0.7);
 }
 @keyframes letter-breath {
   0%, 100% { opacity: 0.92; transform: translateY(0) scale(1); }
@@ -314,11 +292,11 @@ body > #vignette,
   min-height: 0;
 }
 
-/* ─────────── video strip — fills the right column's row ─────────── */
+/* ─────────── featured media — fills the right column's row ─────────── */
 .video-strip {
   width: 100%;
   flex: 1 1 0;
-  min-height: 0;
+  min-height: 160px;
   overflow: hidden;
   background: var(--ink-2);
   position: relative;
@@ -327,7 +305,11 @@ body > #vignette,
   text-decoration: none;
   color: inherit;
 }
-.video-strip video {
+/* the media never sets the frame's size; the row does */
+.video-strip video,
+.video-strip .video-still {
+  position: absolute;
+  inset: 0;
   width: 100%;
   height: 100%;
   object-fit: cover;
@@ -350,13 +332,13 @@ body > #vignette,
   padding: 1px;          /* the visible border thickness */
   background: conic-gradient(
     from var(--sheen-angle, 0deg),
-    rgba(241, 236, 225, 0.0)  0deg,
-    rgba(241, 236, 225, 0.0)  78deg,
-    rgba(241, 236, 225, 0.55) 90deg,
-    rgba(241, 236, 225, 0.95) 100deg,
-    rgba(241, 236, 225, 0.55) 110deg,
-    rgba(241, 236, 225, 0.0)  124deg,
-    rgba(241, 236, 225, 0.0)  360deg
+    rgba(247, 248, 249, 0.0)  0deg,
+    rgba(247, 248, 249, 0.0)  78deg,
+    rgba(247, 248, 249, 0.55) 90deg,
+    rgba(247, 248, 249, 0.95) 100deg,
+    rgba(247, 248, 249, 0.55) 110deg,
+    rgba(247, 248, 249, 0.0)  124deg,
+    rgba(247, 248, 249, 0.0)  360deg
   );
   /* idle: a barely-there bone hairline */
   opacity: 0.18;
@@ -390,7 +372,7 @@ body > #vignette,
 .video-labels {
   position: absolute;
   left: var(--s-3);
-  right: 44px; /* leave room for SC icon bottom-right */
+  right: 44px; /* leave room for the platform mark bottom-right */
   bottom: var(--s-3);
   z-index: 3;
   display: flex;
@@ -409,10 +391,10 @@ body > #vignette,
   padding: 3px 5px 2px;
   white-space: nowrap;
 }
-/* NEW = ember text on bone pill */
+/* NEW = ink text on a bone pill (no second ember mark on the first screen) */
 .video-label--new {
   background: var(--bone);
-  color: var(--ember);
+  color: var(--ink);
   font-weight: 500;
 }
 /* TITLE = bone text on ink pill */
@@ -420,7 +402,7 @@ body > #vignette,
   background: var(--ink);
   color: var(--bone);
 }
-/* SoundCloud mark in the video corner */
+/* platform mark in the media corner */
 .video-sc-mark {
   position: absolute;
   right: var(--s-3);
@@ -444,20 +426,20 @@ body > #vignette,
   transform: scale(1.08);
 }
 
-/* ─────────── audio bar — inline, full-width row ─────────── */
+/* ─────────── audio bar — inline, full-width row under the media ─────────── */
 .audio-bar {
   grid-column: 1 / -1;
   grid-row: 2;
   position: relative;
   width: 100%;
-  height: clamp(118px, 15dvh, 132px);
+  height: clamp(118px, 15svh, 132px);
   border-top: 1px solid var(--hairline);
   border-bottom: 1px solid var(--hairline);
   overflow: hidden;
   isolation: isolate;
   transition: border-color 320ms var(--ease-out);
 }
-.audio-bar.is-playing { border-color: rgba(201, 56, 41, 0.25); }
+.audio-bar.is-playing { border-color: rgba(205, 45, 68, 0.25); }
 .audio-bar-art {
   position: absolute;
   inset: 0;
@@ -473,9 +455,9 @@ body > #vignette,
   position: absolute;
   inset: 0;
   background: linear-gradient(90deg,
-    rgba(10, 9, 8, 0.10) 0%,
-    rgba(10, 9, 8, 0.40) 30%,
-    rgba(10, 9, 8, 0.70) 100%);
+    rgba(5, 4, 3, 0.10) 0%,
+    rgba(5, 4, 3, 0.40) 30%,
+    rgba(5, 4, 3, 0.70) 100%);
   z-index: 1;
 }
 .audio-bar-inner {
@@ -495,12 +477,12 @@ body > #vignette,
   position: relative;
   background-size: cover;
   background-position: center;
-  box-shadow: inset 0 0 0 1px rgba(241, 236, 225, 0.08);
+  box-shadow: inset 0 0 0 1px rgba(247, 248, 249, 0.08);
   transition: box-shadow 320ms var(--ease-out);
 }
 .audio-bar.is-playing .art-window {
-  box-shadow: inset 0 0 0 1px rgba(201, 56, 41, 0.45),
-              0 0 0 1px rgba(201, 56, 41, 0.15);
+  box-shadow: inset 0 0 0 1px rgba(205, 45, 68, 0.45),
+              0 0 0 1px rgba(205, 45, 68, 0.15);
 }
 .play-btn {
   position: absolute;
@@ -510,10 +492,10 @@ body > #vignette,
   height: 40px;
   border-radius: 999px;
   /* very transparent so the album art reads through */
-  background: rgba(10, 9, 8, 0.18);
+  background: rgba(5, 4, 3, 0.18);
   backdrop-filter: blur(2px);
   -webkit-backdrop-filter: blur(2px);
-  border: 1px solid rgba(241, 236, 225, 0.45);
+  border: 1px solid rgba(247, 248, 249, 0.45);
   color: var(--bone);
   display: flex;
   align-items: center;
@@ -530,8 +512,8 @@ body > #vignette,
 }
 /* When playing, the button melts further into the art so the visual reads as art-first */
 .audio-bar.is-playing .play-btn {
-  background: rgba(10, 9, 8, 0.08);
-  border-color: rgba(241, 236, 225, 0.30);
+  background: rgba(5, 4, 3, 0.08);
+  border-color: rgba(247, 248, 249, 0.30);
   opacity: 0.55;
 }
 .audio-bar.is-playing .play-btn:hover { opacity: 1; }
@@ -539,7 +521,7 @@ body > #vignette,
   position: absolute;
   inset: -8px;
   border-radius: 999px;
-  background: radial-gradient(circle, rgba(201, 56, 41, 0.45), transparent 60%);
+  background: radial-gradient(circle, rgba(205, 45, 68, 0.45), transparent 60%);
   opacity: 0;
   z-index: -1;
   transition: opacity 480ms var(--ease-out);
@@ -563,10 +545,10 @@ body > #vignette,
 .meta-panel {
   flex: 1;
   position: relative;
-  background: rgba(10, 9, 8, 0.32);
+  background: rgba(5, 4, 3, 0.32);
   backdrop-filter: blur(20px) saturate(120%);
   -webkit-backdrop-filter: blur(20px) saturate(120%);
-  border-left: 1px solid rgba(241, 236, 225, 0.06);
+  border-left: 1px solid rgba(247, 248, 249, 0.06);
   display: flex;
   flex-direction: column;
   padding: 10px var(--gutter) 8px;
@@ -595,7 +577,7 @@ body > #vignette,
   line-height: 1;
   margin-top: 4px;
 }
-.meta-flip .red { color: var(--ember); }
+.meta-flip .meta-tag { color: var(--bone-3); }
 .meta-attribution {
   font-family: var(--font-mono);
   font-size: 8px;
@@ -625,7 +607,6 @@ body > #vignette,
 .audio-footnote-link .icon { width: 16px; height: 12px; }
 .audio-footnote-link:hover { color: var(--ember); transform: scale(1.08); }
 .audio-footnote-link:focus-visible { outline: 1px solid var(--ember); outline-offset: 3px; }
-.meta-sub .red { color: var(--ember); }
 .hifi-tag {
   margin-left: 6px;
   color: var(--ash-gold);
@@ -684,7 +665,7 @@ body > #vignette,
 .waveform .bar.played {
   background: var(--ember);
   opacity: 1;
-  box-shadow: 0 0 4px rgba(201, 56, 41, 0.6);
+  box-shadow: 0 0 4px rgba(205, 45, 68, 0.6);
 }
 .waveform .bar.hovered {
   background: var(--ash-gold);
@@ -692,10 +673,134 @@ body > #vignette,
 }
 .waveform:hover .bar:not(.played):not(.hovered) { opacity: 0.6; }
 
+/* ─────────── stream: everything under the fold ─────────── */
+.stream {
+  width: 100%;
+  max-width: var(--col-max);
+  margin: 0 auto;
+  padding: var(--s-16) var(--s-8) var(--s-20);
+  display: flex;
+  flex-direction: column;
+  gap: var(--s-16);
+}
+.section-eyebrow {
+  font-family: var(--font-mono);
+  font-weight: 400;
+  font-size: 9px;
+  letter-spacing: 0.22em;
+  text-transform: uppercase;
+  color: var(--bone-4);
+  line-height: 1;
+  margin: 0 0 var(--s-4);
+}
+
+/* ─────────── releases: hairline-separated rows ─────────── */
+.release-list {
+  border-top: 1px solid var(--hairline);
+}
+.release {
+  display: grid;
+  grid-template-columns: 72px minmax(0, 1fr);
+  column-gap: var(--s-4);
+  align-items: start;
+  padding: var(--s-4) 0;
+  border-bottom: 1px solid var(--hairline);
+}
+.release-art {
+  width: 72px;
+  height: 72px;
+  display: block;
+  object-fit: cover;
+  background: var(--ink-2);
+  box-shadow: inset 0 0 0 1px rgba(247, 248, 249, 0.06);
+  filter: saturate(0.95);
+}
+.release-body {
+  min-width: 0;
+  display: flex;
+  flex-direction: column;
+}
+.release-eyebrow {
+  font-family: var(--font-mono);
+  font-size: 8px;
+  letter-spacing: 0.22em;
+  text-transform: uppercase;
+  color: var(--bone-4);
+  line-height: 1;
+  margin: 2px 0 0;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+/* the list's single accent mark */
+.release-eyebrow .release-new {
+  color: var(--ember);
+  font-weight: 500;
+}
+.release-title {
+  font-family: var(--font-display);
+  font-style: italic;
+  font-weight: 300;
+  font-size: 22px;
+  line-height: 1.05;
+  letter-spacing: 0;
+  text-transform: none;
+  color: var(--bone);
+  margin: 6px 0 0;
+  overflow-wrap: anywhere;
+}
+.release-credit {
+  font-family: var(--font-body);
+  font-weight: 300;
+  font-size: 12px;
+  line-height: 1.4;
+  letter-spacing: var(--tr-snug);
+  color: var(--bone-3);
+  margin: 2px 0 0;
+}
+.release-links {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--s-1);
+  margin: 6px 0 0 -7px;
+}
+.release-link {
+  width: 28px;
+  height: 28px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--bone-3);
+  text-decoration: none;
+  position: relative;
+  isolation: isolate;
+  transition: color 320ms var(--ease-out), transform 240ms var(--ease-out);
+}
+.release-link .icon {
+  width: 14px;
+  height: 14px;
+  display: block;
+}
+.release-link:hover { color: var(--ember); transform: scale(1.08); }
+.release-link:active { transform: scale(0.96); }
+.release-link:focus-visible { outline: 1px solid var(--ember); outline-offset: 2px; }
+
+/* ─────────── next: one mono line ─────────── */
+.next {
+  font-family: var(--font-mono);
+  font-size: 9px;
+  letter-spacing: 0.22em;
+  text-transform: uppercase;
+  color: var(--bone-3);
+  line-height: 1;
+  margin: 0;
+  padding: var(--s-4) 0;
+  border-top: 1px solid var(--hairline);
+  border-bottom: 1px solid var(--hairline);
+}
+
 /* ─────────── links ─────────── */
 .links {
-  grid-column: 1 / -1;
-  grid-row: 3;
   display: flex;
   flex-direction: column;
   gap: var(--s-2);
@@ -784,7 +889,7 @@ body > #vignette,
 .link:hover .icon {
   color: var(--ember);
   transform: scale(1.1);
-  filter: drop-shadow(0 0 6px rgba(201, 56, 41, 0.55));
+  filter: drop-shadow(0 0 6px rgba(205, 45, 68, 0.55));
 }
 .link:hover .leader { opacity: 0; transform: translateX(-4px); }
 .link:hover .handle { opacity: 1; transform: translateX(0); color: var(--ember); }
@@ -796,10 +901,10 @@ body > #vignette,
   position: absolute;
   border-radius: 999px;
   background: radial-gradient(circle,
-    rgba(201, 56, 41, 0.42) 0%,
-    rgba(201, 56, 41, 0.18) 35%,
-    rgba(201, 56, 41, 0.0)  72%);
-  border: 1px solid rgba(201, 56, 41, 0.55);
+    rgba(205, 45, 68, 0.42) 0%,
+    rgba(205, 45, 68, 0.18) 35%,
+    rgba(205, 45, 68, 0.0)  72%);
+  border: 1px solid rgba(205, 45, 68, 0.55);
   pointer-events: none;
   transform: scale(0);
   opacity: 0.85;
@@ -811,4 +916,11 @@ body > #vignette,
   0%   { transform: scale(0);    opacity: 0.85; }
   60%  { opacity: 0.6; }
   100% { transform: scale(1);    opacity: 0; }
+}
+
+/* ─────────── wider screens: the column stays narrow, just a little roomier ─────────── */
+@media (min-width: 720px) {
+  :root { --col-max: 520px; }
+  .hero { grid-template-columns: 92px 1fr; }
+  .release-title { font-size: 24px; }
 }

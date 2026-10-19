@@ -1,0 +1,141 @@
+{
+  "generated_at": "2026-10-19T21:54:34.621Z",
+  "content_hash": "a0f249a7e60b4513950c97ea161310667b2a5156247d187007b101c73a312792",
+  "version": "0.2.0",
+  "artist": {
+    "name": "nhi",
+    "city": "austin · tx",
+    "tagline": "patient music for patient listeners",
+    "transmission": 6
+  },
+  "links": [
+    {
+      "platform": "spotify",
+      "handle": "nhi",
+      "href": "https://open.spotify.com/artist/5FT7FmovNNObOlH1mwRWxR"
+    },
+    {
+      "platform": "soundcloud",
+      "handle": "@nhi-dj",
+      "href": "https://soundcloud.com/nhi-dj"
+    },
+    {
+      "platform": "youtube",
+      "handle": "@nhi-wav",
+      "href": "https://www.youtube.com/@nhi-wav"
+    },
+    {
+      "platform": "instagram",
+      "handle": "@nhi.wav",
+      "href": "https://www.instagram.com/nhi.wav/"
+    },
+    {
+      "platform": "tiktok",
+      "handle": "@nhi.wav",
+      "href": "https://www.tiktok.com/@nhi.wav"
+    },
+    {
+      "platform": "email",
+      "handle": "management@forcemajeure.vip",
+      "href": "mailto:management@forcemajeure.vip",
+      "label": "management"
+    }
+  ],
+  "now_playing": {
+    "slug": "i-need-a-forest-fire",
+    "title": "i need a forest fire [nhi flip]",
+    "type": "flip",
+    "tag": "flip",
+    "credit": "james blake · bon iver",
+    "src": "/releases/i-need-a-forest-fire/preview.mp3",
+    "art": "/releases/i-need-a-forest-fire/cover.jpg",
+    "trackUrl": "https://soundcloud.com/nhi-dj/i-need-a-forest-fire",
+    "video": {
+      "src": "/releases/i-need-a-forest-fire/canvas.mp4",
+      "poster": "/releases/i-need-a-forest-fire/cover.jpg"
+    }
+  },
+  "releases": [
+    {
+      "slug": "a-bar-song-tipsy",
+      "title": "a bar song (tipsy) [nhi flip]",
+      "type": "flip",
+      "tag": "flip",
+      "credit": "shaboozey",
+      "date": "2026-09-11",
+      "art": "/releases/a-bar-song-tipsy/cover.jpg",
+      "links": {
+        "soundcloud": "https://soundcloud.com/nhi-dj/tipsy",
+        "hypeddit": "https://hypeddit.com/nhi-dj/a-bar-song"
+      }
+    },
+    {
+      "slug": "femininomenon",
+      "title": "femininomenon [nhi flip]",
+      "type": "flip",
+      "tag": "flip",
+      "credit": "chappell roan",
+      "date": "2026-06-05",
+      "art": "/releases/femininomenon/cover.jpg",
+      "links": {
+        "soundcloud": "https://soundcloud.com/nhi-dj/femininomen",
+        "hypeddit": "https://hypeddit.com/nhi-dj/femininomenom"
+      }
+    },
+    {
+      "slug": "the-gamut-nhi-001",
+      "title": "the gamut.nhi.001",
+      "type": "set",
+      "tag": "dj set",
+      "credit": "",
+      "date": "2026-05-18",
+      "art": "/releases/the-gamut-nhi-001/cover.jpg",
+      "links": {
+        "soundcloud": "https://soundcloud.com/nhi-dj/the-gamut"
+      }
+    },
+    {
+      "slug": "i-need-a-forest-fire",
+      "title": "i need a forest fire [nhi flip]",
+      "type": "flip",
+      "tag": "flip",
+      "credit": "james blake · bon iver",
+      "date": "2026-05-07",
+      "art": "/releases/i-need-a-forest-fire/cover.jpg",
+      "links": {
+        "soundcloud": "https://soundcloud.com/nhi-dj/i-need-a-forest-fire",
+        "hypeddit": "https://hypeddit.com/nhi-dj/i-need-a-forest-fire"
+      }
+    },
+    {
+      "slug": "dandadan",
+      "title": "dandadan [nhi flip]",
+      "type": "flip",
+      "tag": "flip",
+      "credit": "creepy nuts",
+      "date": "2025-09-22",
+      "art": "/releases/dandadan/cover.jpg",
+      "links": {
+        "soundcloud": "https://soundcloud.com/nhi-dj/dandadan"
+      }
+    },
+    {
+      "slug": "million-dollar-baby",
+      "title": "million dollar baby [nhi flip]",
+      "type": "flip",
+      "tag": "flip",
+      "credit": "tommy richman",
+      "date": "2024-09-07",
+      "art": "/releases/million-dollar-baby/cover.jpg",
+      "links": {
+        "soundcloud": "https://soundcloud.com/nhi-dj/million-dollar-baby-nhi-flip",
+        "hypeddit": "https://hypeddit.com/nhi-dj/milliondollarbabynhiflip"
+      }
+    }
+  ],
+  "next": {
+    "title": "making money solo",
+    "type": "original",
+    "date": "2026-11-06"
+  }
+}

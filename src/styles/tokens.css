@@ -1,7 +1,7 @@
 /* =========================================================================
    NHI — Foundations
    Mobile-first artist site. Quiet, alien, mysterious.
-   Inspired by "The Gamut" — bone, ink, ember, ash-gold.
+   Bone, ink, ember, ash-gold — the 2026 palette (see design/palette.md).
    ========================================================================= */
 
 /* Webfonts via Google Fonts.
@@ -14,26 +14,27 @@
 
 :root {
   /* ── Core palette ─────────────────────────────────────────────────────── */
-  --ink:        #0a0908;   /* near-black background, slightly warm */
-  --ink-2:      #141210;   /* one step lighter — cards, sheets */
-  --ink-3:      #1c1916;   /* hover surfaces, dividers in dark mode */
-  --bone:       #f1ece1;   /* primary foreground — warm off-white */
-  --bone-2:     #d9d2c4;   /* dimmed foreground */
-  --bone-3:     #8a8478;   /* tertiary text, metadata */
-  --bone-4:     #4a4641;   /* low-contrast lines, hairlines */
+  --ink:        #050403;   /* near-black background, a breath of warmth */
+  --ink-2:      #0f0d0b;   /* one step lighter — cards, sheets */
+  --ink-3:      #181512;   /* hover surfaces, dividers in dark mode */
+  --bone:       #f7f8f9;   /* primary foreground — cool off-white, never #fff */
+  --bone-2:     #d9d8d4;   /* dimmed foreground */
+  --bone-3:     #8b8a86;   /* tertiary text, metadata */
+  --bone-4:     #4a4845;   /* low-contrast lines, hairlines */
 
   /* ── Accent (used sparingly — never as fill, mostly as marks) ─────────── */
-  --ember:      #c93829;   /* The Gamut red — primary accent, single hits */
-  --ember-deep: #8a2317;   /* hover/pressed for ember */
-  --ash-gold:   #b78f54;   /* warm metallic — secondary accent */
-  --ash-gold-2: #836138;
+  --ember:      #cd2d44;   /* bright crimson — primary accent, single hits */
+  --ember-deep: #6c1723;   /* hover/pressed for ember */
+  --ash-gold:   #d8b875;   /* warm metallic — secondary accent */
+  --ash-gold-2: #975434;
+  --peach:      #eeb59a;   /* reserved — rarely used */
 
   /* ── Functional ───────────────────────────────────────────────────────── */
-  --hairline:        rgba(241, 236, 225, 0.10);
-  --hairline-strong: rgba(241, 236, 225, 0.18);
-  --scrim:           rgba(10, 9, 8, 0.72);
-  --scrim-soft:      rgba(10, 9, 8, 0.40);
-  --grain:           rgba(241, 236, 225, 0.025);
+  --hairline:        rgba(247, 248, 249, 0.10);
+  --hairline-strong: rgba(247, 248, 249, 0.18);
+  --scrim:           rgba(5, 4, 3, 0.72);
+  --scrim-soft:      rgba(5, 4, 3, 0.40);
+  --grain:           rgba(247, 248, 249, 0.025);
 
   /* ── Semantic ─────────────────────────────────────────────────────────── */
   --bg:            var(--ink);
@@ -121,6 +122,8 @@
   --gutter:        20px;
   --content-max:   720px;   /* desktop reading width — small on purpose */
   --mobile-max:    430px;
+  --col-max:       430px;   /* the centred column; widens a little on desktop */
+  --rail-h:        44px;    /* print-stamp rails, top and bottom */
 }
 
 /* =========================================================================
@@ -278,7 +281,7 @@ code, kbd, samp, .t-mono {
   inset: 0;
   pointer-events: none;
   z-index: 1;
-  background-image: radial-gradient(rgba(241, 236, 225, 0.05) 1px, transparent 1px);
+  background-image: radial-gradient(rgba(247, 248, 249, 0.05) 1px, transparent 1px);
   background-size: 3px 3px;
   mix-blend-mode: overlay;
   opacity: 0.6;

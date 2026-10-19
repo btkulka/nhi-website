@@ -7,7 +7,7 @@ const formatUTC = (d) => {
   return `${hh}:${mm}:${ss} utc`;
 };
 
-export default function Footer() {
+export default function Footer({ version }) {
   const [now, setNow] = useState(() => formatUTC(new Date()));
 
   useEffect(() => {
@@ -19,19 +19,8 @@ export default function Footer() {
     <footer className="rail rail-bottom" role="contentinfo">
       <div className="rail-inner">
         <span className="rail-cap left mono-time">{now}</span>
-        <span className="rail-rule" aria-hidden="true">
-          <a
-            className="fm-mark"
-            href="https://www.forcemajeure.vip"
-            target="_blank"
-            rel="noopener noreferrer"
-            aria-label="force majeure"
-            data-spark
-          >
-            <img src="/images/fm-mark.png" alt="" />
-          </a>
-        </span>
-        <span className="rail-cap right">v0.1</span>
+        <span className="rail-rule" aria-hidden="true" />
+        <span className="rail-cap right">{version ? `v${version}` : null}</span>
       </div>
     </footer>
   );

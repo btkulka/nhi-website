@@ -1,5 +1,13 @@
-import { Mail } from 'lucide-react';
-import { siSpotify, siSoundcloud, siInstagram, siTiktok } from 'simple-icons';
+import { Download, ExternalLink, Link, Mail } from 'lucide-react';
+import {
+  siApplemusic,
+  siBandcamp,
+  siInstagram,
+  siSoundcloud,
+  siSpotify,
+  siTiktok,
+  siYoutube,
+} from 'simple-icons';
 
 // Brand marks — render the simple-icons path inside a small SVG shell.
 // fill="currentColor" preserves the design system rule: "always bone,
@@ -13,17 +21,30 @@ function BrandIcon({ icon }) {
 }
 
 const BRAND = {
-  spotify:    siSpotify,
-  soundcloud: siSoundcloud,
-  instagram:  siInstagram,
-  tiktok:     siTiktok,
+  spotify:     siSpotify,
+  soundcloud:  siSoundcloud,
+  youtube:     siYoutube,
+  apple_music: siApplemusic,
+  bandcamp:    siBandcamp,
+  instagram:   siInstagram,
+  tiktok:      siTiktok,
 };
+
+// Non-brand marks come from lucide: thin 1.5px outline in the text colour.
+const GLYPH = {
+  email:      Mail,
+  hypeddit:   Download,
+  smart_link: Link,
+  other:      ExternalLink,
+};
+
+// "apple_music" → "apple music" for labels and aria text.
+export const platformLabel = (platform) => String(platform ?? '').replace(/_/g, ' ');
 
 export default function PlatformIcon({ platform }) {
   const brand = BRAND[platform];
   if (brand) return <BrandIcon icon={brand} />;
-  if (platform === 'email') {
-    return <Mail className="icon" strokeWidth={1.5} aria-hidden="true" />;
-  }
+  const Glyph = GLYPH[platform];
+  if (Glyph) return <Glyph className="icon" strokeWidth={1.5} aria-hidden="true" />;
   return null;
 }

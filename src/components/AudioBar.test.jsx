@@ -3,20 +3,22 @@ import { render, screen, fireEvent } from '@testing-library/react';
 import AudioBar from './AudioBar.jsx';
 
 const track = {
+  slug: 'i-need-a-forest-fire',
   title: 'i need a forest fire',
-  flipTag: 'nhi flip',
-  attribution: 'james blake · bon iver',
-  src: '/audio/test.mp3',
-  art: '/images/test.jpg',
-  trackUrl: 'https://soundcloud.com/nhi-dj/test',
+  type: 'flip',
+  tag: 'nhi flip',
+  credit: 'james blake · bon iver',
+  src: '/releases/i-need-a-forest-fire/preview.mp3',
+  art: '/releases/i-need-a-forest-fire/cover.jpg',
+  trackUrl: 'https://soundcloud.com/nhi-dj/i-need-a-forest-fire',
 };
 
 describe('<AudioBar />', () => {
-  it('renders the track metadata', () => {
+  it('renders the track metadata with the credit under the title', () => {
     render(<AudioBar track={track} />);
     expect(screen.getByText(track.title)).toBeInTheDocument();
-    expect(screen.getByText(track.flipTag)).toBeInTheDocument();
-    expect(screen.getByText(new RegExp(track.attribution, 'i'))).toBeInTheDocument();
+    expect(screen.getByText(track.tag)).toBeInTheDocument();
+    expect(screen.getByText(new RegExp(track.credit, 'i'))).toBeInTheDocument();
   });
 
   it('mounts an audio element pointing at the track src', () => {
@@ -51,5 +53,17 @@ describe('<AudioBar />', () => {
   it('omits the soundcloud footnote when trackUrl is missing', () => {
     render(<AudioBar track={{ ...track, trackUrl: undefined }} />);
     expect(screen.queryByLabelText('open on soundcloud')).toBeNull();
+  });
+
+  it('omits the credit line when the credit is empty', () => {
+    const { container } = render(<AudioBar track={{ ...track, credit: '' }} />);
+    expect(container.querySelector('.meta-attribution')).toBeNull();
+  });
+
+  it('renders nothing at all when now_playing is null', () => {
+    const { container } = render(<AudioBar track={null} />);
+    expect(container).toBeEmptyDOMElement();
+    expect(screen.queryByLabelText('now playing')).toBeNull();
+    expect(container.querySelector('audio')).toBeNull();
   });
 });

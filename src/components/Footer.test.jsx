@@ -10,22 +10,26 @@ describe('<Footer />', () => {
   afterEach(() => { vi.useRealTimers(); });
 
   it('renders the current UTC time on mount', () => {
-    render(<Footer />);
+    render(<Footer version="0.2.0" />);
     expect(screen.getByText('12:34:56 utc')).toBeInTheDocument();
   });
 
   it('ticks the time once per second', () => {
-    render(<Footer />);
+    render(<Footer version="0.2.0" />);
     expect(screen.getByText('12:34:56 utc')).toBeInTheDocument();
     act(() => { vi.advanceTimersByTime(1000); });
     expect(screen.getByText('12:34:57 utc')).toBeInTheDocument();
   });
 
-  it('links the FM mark with safe rel attrs', () => {
-    render(<Footer />);
-    const link = screen.getByLabelText('force majeure');
-    expect(link).toHaveAttribute('href', 'https://www.forcemajeure.vip');
-    expect(link).toHaveAttribute('target', '_blank');
-    expect(link.getAttribute('rel')).toMatch(/noopener/);
+  it('stamps the content version', () => {
+    render(<Footer version="0.2.0" />);
+    expect(screen.getByText('v0.2.0')).toBeInTheDocument();
+  });
+
+  it('carries no force majeure mark or link', () => {
+    const { container } = render(<Footer version="0.2.0" />);
+    expect(screen.queryByLabelText('force majeure')).toBeNull();
+    expect(container.querySelector('a')).toBeNull();
+    expect(container.querySelector('img')).toBeNull();
   });
 });

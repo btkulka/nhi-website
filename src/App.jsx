@@ -1,27 +1,36 @@
 import TopBar from './components/TopBar.jsx';
 import Wordmark from './components/Wordmark.jsx';
 import VideoStrip from './components/VideoStrip.jsx';
+import AudioBar from './components/AudioBar.jsx';
+import ReleaseList from './components/ReleaseList.jsx';
+import NextUp from './components/NextUp.jsx';
 import LinkList from './components/LinkList.jsx';
 import Footer from './components/Footer.jsx';
-import AudioBar from './components/AudioBar.jsx';
 import RippleLayer from './components/RippleLayer.jsx';
-import { LINKS, NOW_PLAYING } from './content.js';
+import { CONTENT, featuredOf } from './content.js';
 
-export default function App() {
+// The whole page renders from one generated object. `content` is a prop so
+// tests can hand in variants (no now_playing, no next) without mocking.
+export default function App({ content = CONTENT }) {
+  const featured = featuredOf(content);
   return (
     <div className="app">
-      <TopBar />
-      <main className="stage">
-        <div className="grid">
+      <TopBar artist={content.artist} />
+      <main>
+        <section className="hero" aria-label="featured">
           <Wordmark />
           <div className="right">
-            <VideoStrip />
+            <VideoStrip track={featured} />
           </div>
-          <AudioBar track={NOW_PLAYING} />
-          <LinkList items={LINKS} />
+          <AudioBar track={content.now_playing} />
+        </section>
+        <div className="stream">
+          <ReleaseList releases={content.releases} />
+          <NextUp next={content.next} />
+          <LinkList items={content.links} />
         </div>
       </main>
-      <Footer />
+      <Footer version={content.version} />
       <RippleLayer />
     </div>
   );
