@@ -1,6 +1,6 @@
 {
-  "generated_at": "2026-10-19T22:01:39.098Z",
-  "content_hash": "9caf82f9d106bfdc3f7915e707b93b46e1a1c90c2899efe011269fc458616efc",
+  "generated_at": "2026-10-19T22:06:10.573Z",
+  "content_hash": "4112a732c894e5d92f871df04265edb9b56e5f616d23c2ad91205d38369d5be6",
   "version": "0.2.0",
   "artist": {
     "name": "nhi",
@@ -47,11 +47,11 @@
     "type": "flip",
     "tag": "flip",
     "credit": "shaboozey",
-    "art": "/releases/a-bar-song-tipsy/cover.jpg",
+    "art": "/releases/a-bar-song-tipsy/cover.jpg?v=6f1842e6",
     "trackUrl": "https://soundcloud.com/nhi-dj/tipsy",
     "video": {
-      "src": "/releases/a-bar-song-tipsy/canvas.mp4",
-      "poster": "/releases/a-bar-song-tipsy/cover.jpg",
+      "src": "/releases/a-bar-song-tipsy/canvas.mp4?v=4c757da1",
+      "poster": "/releases/a-bar-song-tipsy/cover.jpg?v=6f1842e6",
       "width": null,
       "height": null
     },
@@ -69,7 +69,7 @@
       "tag": "flip",
       "credit": "shaboozey",
       "date": "2026-09-11",
-      "art": "/releases/a-bar-song-tipsy/cover.jpg",
+      "art": "/releases/a-bar-song-tipsy/cover.jpg?v=6f1842e6",
       "links": {
         "soundcloud": "https://soundcloud.com/nhi-dj/tipsy",
         "hypeddit": "https://hypeddit.com/nhi-dj/a-bar-song"
@@ -82,7 +82,7 @@
       "tag": "flip",
       "credit": "chappell roan",
       "date": "2026-06-05",
-      "art": "/releases/femininomenon/cover.jpg",
+      "art": "/releases/femininomenon/cover.jpg?v=6ce6fc89",
       "links": {
         "soundcloud": "https://soundcloud.com/nhi-dj/femininomen",
         "hypeddit": "https://hypeddit.com/nhi-dj/femininomenom"
@@ -95,7 +95,7 @@
       "tag": "dj set",
       "credit": "",
       "date": "2026-05-18",
-      "art": "/releases/the-gamut-nhi-001/cover.jpg",
+      "art": "/releases/the-gamut-nhi-001/cover.jpg?v=c64e59c0",
       "links": {
         "soundcloud": "https://soundcloud.com/nhi-dj/the-gamut"
       }
@@ -107,7 +107,7 @@
       "tag": "flip",
       "credit": "james blake · bon iver",
       "date": "2026-05-07",
-      "art": "/releases/i-need-a-forest-fire/cover.jpg",
+      "art": "/releases/i-need-a-forest-fire/cover.jpg?v=64fa3c03",
       "links": {
         "soundcloud": "https://soundcloud.com/nhi-dj/i-need-a-forest-fire",
         "hypeddit": "https://hypeddit.com/nhi-dj/i-need-a-forest-fire"
@@ -120,7 +120,7 @@
       "tag": "flip",
       "credit": "creepy nuts",
       "date": "2025-09-22",
-      "art": "/releases/dandadan/cover.jpg",
+      "art": "/releases/dandadan/cover.jpg?v=091b9609",
       "links": {
         "soundcloud": "https://soundcloud.com/nhi-dj/dandadan"
       }
@@ -132,7 +132,7 @@
       "tag": "flip",
       "credit": "tommy richman",
       "date": "2024-09-07",
-      "art": "/releases/million-dollar-baby/cover.jpg",
+      "art": "/releases/million-dollar-baby/cover.jpg?v=00ecaa68",
       "links": {
         "soundcloud": "https://soundcloud.com/nhi-dj/million-dollar-baby-nhi-flip",
         "hypeddit": "https://hypeddit.com/nhi-dj/milliondollarbabynhiflip"
