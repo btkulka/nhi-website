@@ -2,6 +2,7 @@ import TopBar from './components/TopBar.jsx';
 import Wordmark from './components/Wordmark.jsx';
 import VideoStrip from './components/VideoStrip.jsx';
 import AudioBar from './components/AudioBar.jsx';
+import EmbedPlayer from './components/EmbedPlayer.jsx';
 import ReleaseList from './components/ReleaseList.jsx';
 import NextUp from './components/NextUp.jsx';
 import LinkList from './components/LinkList.jsx';
@@ -22,7 +23,9 @@ export default function App({ content = CONTENT }) {
           <div className="right">
             <VideoStrip track={featured} />
           </div>
-          <AudioBar track={content.now_playing} />
+          {content.now_playing?.embed
+            ? <EmbedPlayer track={content.now_playing} />
+            : <AudioBar track={content.now_playing} />}
         </section>
         <div className="stream">
           <ReleaseList releases={content.releases} />

@@ -1,6 +1,6 @@
 {
-  "generated_at": "2026-10-19T21:54:34.621Z",
-  "content_hash": "a0f249a7e60b4513950c97ea161310667b2a5156247d187007b101c73a312792",
+  "generated_at": "2026-10-19T22:01:39.098Z",
+  "content_hash": "9caf82f9d106bfdc3f7915e707b93b46e1a1c90c2899efe011269fc458616efc",
   "version": "0.2.0",
   "artist": {
     "name": "nhi",
@@ -42,18 +42,24 @@
     }
   ],
   "now_playing": {
-    "slug": "i-need-a-forest-fire",
-    "title": "i need a forest fire [nhi flip]",
+    "slug": "a-bar-song-tipsy",
+    "title": "a bar song (tipsy) [nhi flip]",
     "type": "flip",
     "tag": "flip",
-    "credit": "james blake · bon iver",
-    "src": "/releases/i-need-a-forest-fire/preview.mp3",
-    "art": "/releases/i-need-a-forest-fire/cover.jpg",
-    "trackUrl": "https://soundcloud.com/nhi-dj/i-need-a-forest-fire",
+    "credit": "shaboozey",
+    "art": "/releases/a-bar-song-tipsy/cover.jpg",
+    "trackUrl": "https://soundcloud.com/nhi-dj/tipsy",
     "video": {
-      "src": "/releases/i-need-a-forest-fire/canvas.mp4",
-      "poster": "/releases/i-need-a-forest-fire/cover.jpg"
-    }
+      "src": "/releases/a-bar-song-tipsy/canvas.mp4",
+      "poster": "/releases/a-bar-song-tipsy/cover.jpg",
+      "width": null,
+      "height": null
+    },
+    "embed": {
+      "provider": "soundcloud",
+      "url": "https://soundcloud.com/nhi-dj/tipsy"
+    },
+    "src": null
   },
   "releases": [
     {

@@ -924,3 +924,19 @@ body::after {
   .hero { grid-template-columns: 92px 1fr; }
   .release-title { font-size: 24px; }
 }
+
+/* ─────────── embedded player — the track's own player, in the audio bar's slot ─────────── */
+.embed {
+  grid-column: 1 / -1;
+  grid-row: 2;
+  width: 100%;
+  border-top: 1px solid var(--hairline);
+  border-bottom: 1px solid var(--hairline);
+  background: var(--ink-2);
+}
+.embed-frame {
+  display: block;
+  width: 100%;
+  border: 0;
+  background: var(--ink-2);
+}

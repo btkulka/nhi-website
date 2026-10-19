@@ -68,10 +68,17 @@ describe('now_playing', () => {
       title: expect.any(String),
       tag: expect.any(String),
       credit: expect.any(String),
-      src: expect.any(String),
       art: expect.any(String),
       trackUrl: expect.stringMatching(SAFE_HREF),
     });
+    // It plays through an embedded player (soundcloud or spotify) or a file of its own;
+    // the dashboard ships the file only when there is nothing to embed.
+    expect(NOW_PLAYING.src === null || typeof NOW_PLAYING.src === 'string').toBe(true);
+    if (NOW_PLAYING.embed) {
+      expect(NOW_PLAYING.embed).toMatchObject({ provider: expect.stringMatching(/^(soundcloud|spotify)$/), url: expect.stringMatching(SAFE_HREF) });
+    } else {
+      expect(NOW_PLAYING.src).toEqual(expect.any(String));
+    }
     if (NOW_PLAYING.video) {
       expect(NOW_PLAYING.video).toMatchObject({ src: expect.any(String), poster: expect.any(String) });
     }
