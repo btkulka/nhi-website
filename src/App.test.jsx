@@ -33,7 +33,11 @@ describe('<App />', () => {
     for (const r of CONTENT.releases) {
       expect(screen.getByLabelText(`${r.title} on soundcloud`)).toHaveAttribute('href', r.links.soundcloud);
     }
-    expect(screen.getByText('next · making money solo · 11.06.26')).toBeInTheDocument();
+    // Read the next drop from content.json: a hard-coded date breaks every time a release moves.
+    if (CONTENT.next) {
+      const [y, m, d] = CONTENT.next.date.split('-');
+      expect(screen.getByText(`next · ${CONTENT.next.title} · ${m}.${d}.${y.slice(2)}`)).toBeInTheDocument();
+    }
   });
 
   it('wires every content link into the page', () => {

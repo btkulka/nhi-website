@@ -1,6 +1,6 @@
 {
-  "generated_at": "2026-10-19T22:32:18.360Z",
-  "content_hash": "7cc2736b8e1937bba375404bad5376060838aece628bbe4e8df6f4010f1eebe9",
+  "generated_at": "2026-10-23T16:53:35.513Z",
+  "content_hash": "e0a8a2fcbf74694a6572a15f8bb0d25270645363911ffb5d3b7859927beb70b4",
   "version": "0.2.0",
   "artist": {
     "name": "nhi",
@@ -122,7 +122,8 @@
       "date": "2025-09-22",
       "art": "/releases/dandadan/cover.jpg?v=091b9609",
       "links": {
-        "soundcloud": "https://soundcloud.com/nhi-dj/dandadan"
+        "soundcloud": "https://soundcloud.com/nhi-dj/dandadan",
+        "hypeddit": "https://hypeddit.com/nhi-dj/dandadan"
       }
     },
     {
@@ -142,6 +143,6 @@
   "next": {
     "title": "making money solo",
     "type": "original",
-    "date": "2026-11-06"
+    "date": "2026-11-20"
   }
 }
