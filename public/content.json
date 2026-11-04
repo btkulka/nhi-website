@@ -1,6 +1,6 @@
 {
-  "generated_at": "2026-10-23T16:53:35.513Z",
-  "content_hash": "e0a8a2fcbf74694a6572a15f8bb0d25270645363911ffb5d3b7859927beb70b4",
+  "generated_at": "2026-11-04T00:22:31.248Z",
+  "content_hash": "090d0c1325ea6992ac781180b0967571ae8992104661a872dab5dbc9bc50db62",
   "version": "0.2.0",
   "artist": {
     "name": "nhi",
@@ -141,8 +141,8 @@
     }
   ],
   "next": {
-    "title": "making money solo",
-    "type": "original",
-    "date": "2026-11-20"
+    "title": "madeline [nhi flip]",
+    "type": "flip",
+    "date": "2026-11-06"
   }
 }
