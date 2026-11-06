@@ -1,12 +1,12 @@
 {
-  "generated_at": "2026-11-04T00:22:31.248Z",
-  "content_hash": "090d0c1325ea6992ac781180b0967571ae8992104661a872dab5dbc9bc50db62",
+  "generated_at": "2026-11-06T20:05:29.144Z",
+  "content_hash": "228a0a7b72bf3065ea92346971c1604cd7928c1fc270b327eb50694a8cd0599d",
   "version": "0.2.0",
   "artist": {
     "name": "nhi",
     "city": "austin · tx",
     "tagline": "patient music for patient listeners",
-    "transmission": 6
+    "transmission": 7
   },
   "links": [
     {
@@ -42,26 +42,34 @@
     }
   ],
   "now_playing": {
-    "slug": "a-bar-song-tipsy",
-    "title": "a bar song (tipsy) [nhi flip]",
+    "slug": "madeline",
+    "title": "madeline [nhi flip]",
     "type": "flip",
     "tag": "flip",
-    "credit": "shaboozey",
-    "art": "/releases/a-bar-song-tipsy/cover.jpg?v=6f1842e6",
-    "trackUrl": "https://soundcloud.com/nhi-dj/tipsy",
-    "video": {
-      "src": "/releases/a-bar-song-tipsy/canvas.mp4?v=4c757da1",
-      "poster": "/releases/a-bar-song-tipsy/cover.jpg?v=6f1842e6",
-      "width": null,
-      "height": null
-    },
+    "credit": "inji",
+    "art": "/releases/madeline/cover.jpg?v=adb045b3",
+    "trackUrl": "https://soundcloud.com/nhi-dj/madeline",
+    "video": null,
     "embed": {
       "provider": "soundcloud",
-      "url": "https://soundcloud.com/nhi-dj/tipsy"
+      "url": "https://soundcloud.com/nhi-dj/madeline"
     },
     "src": null
   },
   "releases": [
+    {
+      "slug": "madeline",
+      "title": "madeline [nhi flip]",
+      "type": "flip",
+      "tag": "flip",
+      "credit": "inji",
+      "date": "2026-11-06",
+      "art": "/releases/madeline/cover.jpg?v=adb045b3",
+      "links": {
+        "soundcloud": "https://soundcloud.com/nhi-dj/madeline",
+        "droploud": "https://droploud.com/track/5102e44a-479f-4bbe-b933-aa0c9204df03"
+      }
+    },
     {
       "slug": "a-bar-song-tipsy",
       "title": "a bar song (tipsy) [nhi flip]",
@@ -72,7 +80,7 @@
       "art": "/releases/a-bar-song-tipsy/cover.jpg?v=6f1842e6",
       "links": {
         "soundcloud": "https://soundcloud.com/nhi-dj/tipsy",
-        "hypeddit": "https://hypeddit.com/nhi-dj/a-bar-song"
+        "droploud": "https://droploud.com/track/69ed9fef-82ce-447c-8756-897f7d5cef1c"
       }
     },
     {
@@ -82,7 +90,7 @@
       "tag": "flip",
       "credit": "chappell roan",
       "date": "2026-06-05",
-      "art": "/releases/femininomenon/cover.jpg?v=6ce6fc89",
+      "art": "/releases/femininomenon/cover.jpg?v=08c3348c",
       "links": {
         "soundcloud": "https://soundcloud.com/nhi-dj/femininomen",
         "hypeddit": "https://hypeddit.com/nhi-dj/femininomenom"
@@ -110,7 +118,7 @@
       "art": "/releases/i-need-a-forest-fire/cover.jpg?v=64fa3c03",
       "links": {
         "soundcloud": "https://soundcloud.com/nhi-dj/i-need-a-forest-fire",
-        "hypeddit": "https://hypeddit.com/nhi-dj/i-need-a-forest-fire"
+        "droploud": "https://droploud.com/track/1250d73f-acf2-4b28-a9fb-3d22853ed2f0"
       }
     },
     {
@@ -123,7 +131,7 @@
       "art": "/releases/dandadan/cover.jpg?v=091b9609",
       "links": {
         "soundcloud": "https://soundcloud.com/nhi-dj/dandadan",
-        "hypeddit": "https://hypeddit.com/nhi-dj/dandadan"
+        "droploud": "https://droploud.com/track/d93a1020-bb33-4d75-904b-9f52311b0423"
       }
     },
     {
@@ -136,13 +144,13 @@
       "art": "/releases/million-dollar-baby/cover.jpg?v=00ecaa68",
       "links": {
         "soundcloud": "https://soundcloud.com/nhi-dj/million-dollar-baby-nhi-flip",
-        "hypeddit": "https://hypeddit.com/nhi-dj/million-dollar-baby"
+        "droploud": "https://droploud.com/track/602d7714-31c8-4f2e-b71b-bc546af506aa"
       }
     }
   ],
   "next": {
-    "title": "madeline [nhi flip]",
-    "type": "flip",
-    "date": "2026-11-06"
+    "title": "making money solo",
+    "type": "original",
+    "date": "2026-11-20"
   }
 }

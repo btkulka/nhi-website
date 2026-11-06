@@ -167,6 +167,7 @@ describe('primaryLink', () => {
   it('prefers soundcloud, then the contract order, then anything', () => {
     expect(primaryLink({ hypeddit: 'h', soundcloud: 's' })).toBe('s');
     expect(primaryLink({ hypeddit: 'h', spotify: 'p' })).toBe('p');
+    expect(primaryLink({ hypeddit: 'h', droploud: 'd' })).toBe('d');
     expect(primaryLink({ mystery: 'm' })).toBe('m');
     expect(primaryLink({})).toBeNull();
     expect(primaryLink(undefined)).toBeNull();

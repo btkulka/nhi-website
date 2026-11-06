@@ -3,7 +3,7 @@ import { render } from '@testing-library/react';
 import PlatformIcon, { platformLabel } from './PlatformIcon.jsx';
 
 const BRANDS = ['spotify', 'soundcloud', 'youtube', 'apple_music', 'bandcamp', 'instagram', 'tiktok'];
-const GLYPHS = ['email', 'hypeddit', 'smart_link', 'other'];
+const GLYPHS = ['email', 'droploud', 'hypeddit', 'smart_link', 'other'];
 
 describe('<PlatformIcon />', () => {
   it.each(BRANDS)('renders a brand svg in the text colour for %s', (platform) => {

@@ -13,7 +13,7 @@ export const NOW_PLAYING = CONTENT.now_playing;
 // Release links are keyed by platform; this is the order they render in and
 // the order used when one has to stand in as "the" link for a release.
 export const RELEASE_PLATFORMS = [
-  'soundcloud', 'spotify', 'apple_music', 'youtube', 'bandcamp', 'hypeddit', 'smart_link', 'other',
+  'soundcloud', 'spotify', 'apple_music', 'youtube', 'bandcamp', 'droploud', 'hypeddit', 'smart_link', 'other',
 ];
 
 // "2026-10-12" → "10.12.26". Pure string work so time zones never shift the day.

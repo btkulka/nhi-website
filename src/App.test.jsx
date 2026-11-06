@@ -49,7 +49,8 @@ describe('<App />', () => {
 
   it('stamps the transmission and the version from content.json', () => {
     render(<App />);
-    expect(screen.getByText('nhi · transmission 006')).toBeInTheDocument();
+    const transmission = String(CONTENT.artist.transmission).padStart(3, '0');
+    expect(screen.getByText(`${CONTENT.artist.name} · transmission ${transmission}`)).toBeInTheDocument();
     expect(screen.getByText(`v${CONTENT.version}`)).toBeInTheDocument();
   });
 

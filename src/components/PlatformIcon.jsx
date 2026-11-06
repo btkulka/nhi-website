@@ -33,6 +33,7 @@ const BRAND = {
 // Non-brand marks come from lucide: thin 1.5px outline in the text colour.
 const GLYPH = {
   email:      Mail,
+  droploud:   Download,
   hypeddit:   Download,
   smart_link: Link,
   other:      ExternalLink,
