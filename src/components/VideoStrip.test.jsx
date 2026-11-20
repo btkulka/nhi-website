@@ -30,6 +30,13 @@ describe('<VideoStrip />', () => {
     expect(link).toHaveAttribute('aria-label', 'open i need a forest fire on soundcloud');
   });
 
+  it('names spotify and wears its mark for an original', () => {
+    const original = { ...withVideo, title: 'making money solo', trackUrl: 'https://open.spotify.com/track/2PQYmr8c6C0SzQd391gG49' };
+    const { container } = render(<VideoStrip track={original} />);
+    expect(screen.getByRole('link')).toHaveAttribute('aria-label', 'open making money solo on spotify');
+    expect(container.querySelector('.video-sc-mark svg')).not.toBeNull();
+  });
+
   it('renders the featured + title labels', () => {
     render(<VideoStrip track={withVideo} />);
     expect(screen.getByText('featured')).toBeInTheDocument();

@@ -1,12 +1,12 @@
 {
-  "generated_at": "2026-11-06T20:05:29.144Z",
-  "content_hash": "228a0a7b72bf3065ea92346971c1604cd7928c1fc270b327eb50694a8cd0599d",
+  "generated_at": "2026-11-20T16:54:44.693Z",
+  "content_hash": "8131b317aa0fc89a10ae57df6fdd9a40c808c2d652ce54fa44cb0a34105a808c",
   "version": "0.2.0",
   "artist": {
     "name": "nhi",
     "city": "austin · tx",
     "tagline": "patient music for patient listeners",
-    "transmission": 7
+    "transmission": 8
   },
   "links": [
     {
@@ -42,21 +42,40 @@
     }
   ],
   "now_playing": {
-    "slug": "madeline",
-    "title": "madeline [nhi flip]",
-    "type": "flip",
-    "tag": "flip",
-    "credit": "inji",
-    "art": "/releases/madeline/cover.jpg?v=adb045b3",
-    "trackUrl": "https://soundcloud.com/nhi-dj/madeline",
-    "video": null,
+    "slug": "making-money-solo",
+    "title": "making money solo",
+    "type": "original",
+    "tag": "original",
+    "credit": "",
+    "art": "/releases/making-money-solo/cover.jpg?v=591c0e7f",
+    "trackUrl": "https://open.spotify.com/track/2PQYmr8c6C0SzQd391gG49",
+    "video": {
+      "src": "/releases/making-money-solo/canvas.mp4?v=4da47417",
+      "poster": "/releases/making-money-solo/cover.jpg?v=591c0e7f",
+      "width": null,
+      "height": null
+    },
     "embed": {
-      "provider": "soundcloud",
-      "url": "https://soundcloud.com/nhi-dj/madeline"
+      "provider": "spotify",
+      "url": "https://open.spotify.com/track/2PQYmr8c6C0SzQd391gG49",
+      "id": "2PQYmr8c6C0SzQd391gG49"
     },
     "src": null
   },
   "releases": [
+    {
+      "slug": "making-money-solo",
+      "title": "making money solo",
+      "type": "original",
+      "tag": "original",
+      "credit": "",
+      "date": "2026-11-20",
+      "art": "/releases/making-money-solo/cover.jpg?v=591c0e7f",
+      "links": {
+        "spotify": "https://open.spotify.com/track/2PQYmr8c6C0SzQd391gG49",
+        "smart_link": "https://distrokid.com/hyperfollow/nhi5/making-money-solo-2"
+      }
+    },
     {
       "slug": "madeline",
       "title": "madeline [nhi flip]",
@@ -148,9 +167,5 @@
       }
     }
   ],
-  "next": {
-    "title": "making money solo",
-    "type": "original",
-    "date": "2026-11-20"
-  }
+  "next": null
 }

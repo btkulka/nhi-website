@@ -11,6 +11,11 @@ const EASE_WINDOW = 1.5; // seconds — ease zone on each side of every boundary
 
 const easeOutCubic = (t) => 1 - Math.pow(1 - t, 3);
 
+const PLAYER_HOSTS = [
+  ['soundcloud', /soundcloud\.com/i],
+  ['spotify', /open\.spotify\.com/i],
+];
+
 export default function VideoStrip({ track }) {
   const videoRef = useRef(null);
   const rafRef = useRef(0);
@@ -46,8 +51,10 @@ export default function VideoStrip({ track }) {
   if (!track) return null;
 
   const href = track.trackUrl || null;
-  const onSoundcloud = /soundcloud\.com/i.test(href ?? '');
-  const label = onSoundcloud ? `open ${track.title} on soundcloud` : `open ${track.title}`;
+  // The frame wears the mark of the player it opens: SoundCloud for a flip, Spotify
+  // for an original. Anything else gets the generic mark and no platform in the label.
+  const platform = PLAYER_HOSTS.find(([, re]) => re.test(href ?? ''))?.[0] ?? null;
+  const label = platform ? `open ${track.title} on ${platform}` : `open ${track.title}`;
   const Frame = href ? 'a' : 'div';
   const frameProps = href
     ? { href, target: '_blank', rel: 'noopener noreferrer', 'aria-label': label }
@@ -73,7 +80,7 @@ export default function VideoStrip({ track }) {
 
       {href && (
         <span className="video-sc-mark" aria-hidden="true">
-          <PlatformIcon platform={onSoundcloud ? 'soundcloud' : 'other'} />
+          <PlatformIcon platform={platform || 'other'} />
         </span>
       )}
 

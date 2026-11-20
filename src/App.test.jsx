@@ -1,7 +1,8 @@
 import { describe, it, expect } from 'vitest';
 import { render, screen } from '@testing-library/react';
 import App from './App.jsx';
-import { CONTENT } from './content.js';
+import { CONTENT, primaryLink } from './content.js';
+import { platformLabel } from './components/PlatformIcon.jsx';
 
 describe('<App />', () => {
   it('renders the major page regions in order', () => {
@@ -10,7 +11,8 @@ describe('<App />', () => {
     expect(screen.getByLabelText('nhi')).toBeInTheDocument();                // Wordmark
     expect(screen.getByLabelText('now playing')).toBeInTheDocument();        // AudioBar
     expect(screen.getByLabelText('releases')).toBeInTheDocument();           // ReleaseList
-    expect(screen.getByText(/^next · /)).toBeInTheDocument();                // NextUp
+    // NextUp only renders while content.json names a drop ahead.
+    if (CONTENT.next) expect(screen.getByText(/^next · /)).toBeInTheDocument();
     expect(screen.getByLabelText(/listen and follow/i)).toBeInTheDocument(); // LinkList
     expect(screen.getByRole('contentinfo')).toBeInTheDocument();             // Footer
 
@@ -18,7 +20,7 @@ describe('<App />', () => {
       screen.getByRole('banner'),
       screen.getByLabelText('featured'),
       screen.getByLabelText('releases'),
-      screen.getByText(/^next · /),
+      ...(CONTENT.next ? [screen.getByText(/^next · /)] : []),
       screen.getByLabelText(/listen and follow/i),
       screen.getByRole('contentinfo'),
     ];
@@ -30,8 +32,11 @@ describe('<App />', () => {
   it('renders every release and the next line from content.json', () => {
     render(<App />);
     expect(screen.getByText(`releases · ${CONTENT.releases.length}`)).toBeInTheDocument();
+    // Every link each row carries, whatever the platform: originals live on Spotify, not SoundCloud.
     for (const r of CONTENT.releases) {
-      expect(screen.getByLabelText(`${r.title} on soundcloud`)).toHaveAttribute('href', r.links.soundcloud);
+      for (const [platform, href] of Object.entries(r.links)) {
+        expect(screen.getByLabelText(`${r.title} on ${platformLabel(platform)}`)).toHaveAttribute('href', href);
+      }
     }
     // Read the next drop from content.json: a hard-coded date breaks every time a release moves.
     if (CONTENT.next) {
@@ -60,8 +65,10 @@ describe('<App />', () => {
     expect(container.querySelector('audio')).toBeNull();
     expect(container.querySelector('.hero video')).toBeNull();
     const newest = CONTENT.releases[0];
-    const featured = screen.getByLabelText(`open ${newest.title} on soundcloud`);
-    expect(featured).toHaveAttribute('href', newest.links.soundcloud);
+    const href = primaryLink(newest.links);
+    const title = newest.title.replace(/[.*+?^${}()|[\]\\]/g, '\\$&');
+    const featured = screen.getByLabelText(new RegExp(`^open ${title}( on \\w+)?$`));
+    expect(featured).toHaveAttribute('href', href);
     expect(featured.querySelector('img')).toHaveAttribute('src', newest.art);
   });
 
