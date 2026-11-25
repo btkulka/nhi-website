@@ -1,6 +1,6 @@
 {
-  "generated_at": "2026-11-20T17:51:00.127Z",
-  "content_hash": "6060d8d7a4dff14ea33a69e1ad9b65a76fc2caa0880b510460dfa5205431fb2f",
+  "generated_at": "2026-11-25T17:06:41.384Z",
+  "content_hash": "5911d12ce74086672567de6574477b51d48e04c9ea44a3a50874b23035c5e6b5",
   "version": "0.2.0",
   "artist": {
     "name": "nhi",
@@ -48,7 +48,7 @@
     "tag": "original",
     "credit": "",
     "art": "/releases/making-money-solo/cover.jpg?v=591c0e7f",
-    "trackUrl": "https://open.spotify.com/track/2PQYmr8c6C0SzQd391gG49",
+    "trackUrl": "https://soundcloud.com/nhi-dj/making-money-solo",
     "video": {
       "src": "/releases/making-money-solo/canvas.mp4?v=4da47417",
       "poster": "/releases/making-money-solo/cover.jpg?v=591c0e7f",
@@ -56,9 +56,8 @@
       "height": null
     },
     "embed": {
-      "provider": "spotify",
-      "url": "https://open.spotify.com/track/2PQYmr8c6C0SzQd391gG49",
-      "id": "2PQYmr8c6C0SzQd391gG49"
+      "provider": "soundcloud",
+      "url": "https://soundcloud.com/nhi-dj/making-money-solo"
     },
     "src": null
   },
@@ -74,7 +73,10 @@
       "links": {
         "spotify": "https://open.spotify.com/track/2PQYmr8c6C0SzQd391gG49",
         "smart_link": "https://distrokid.com/hyperfollow/nhi5/making-money-solo-2",
-        "apple_music": "https://music.apple.com/us/album/making-money-solo/6826656419?i=6826656420"
+        "apple_music": "https://music.apple.com/us/album/making-money-solo/6826656419?i=6826656420",
+        "droploud": "https://droploud.com/track/da09502e-e7df-4852-acf9-22d8c811c112",
+        "hypeddit": "https://hypeddit.com/nhi-dj/making-money-solo",
+        "soundcloud": "https://soundcloud.com/nhi-dj/making-money-solo"
       }
     },
     {
@@ -87,6 +89,7 @@
       "art": "/releases/madeline/cover.jpg?v=adb045b3",
       "links": {
         "soundcloud": "https://soundcloud.com/nhi-dj/madeline",
+        "hypeddit": "https://hypeddit.com/nhi-dj/madeline",
         "droploud": "https://droploud.com/track/5102e44a-479f-4bbe-b933-aa0c9204df03"
       }
     },
@@ -100,6 +103,7 @@
       "art": "/releases/a-bar-song-tipsy/cover.jpg?v=6f1842e6",
       "links": {
         "soundcloud": "https://soundcloud.com/nhi-dj/tipsy",
+        "hypeddit": "https://hypeddit.com/nhi-dj/a-bar-song",
         "droploud": "https://droploud.com/track/69ed9fef-82ce-447c-8756-897f7d5cef1c"
       }
     },
@@ -113,7 +117,8 @@
       "art": "/releases/femininomenon/cover.jpg?v=08c3348c",
       "links": {
         "soundcloud": "https://soundcloud.com/nhi-dj/femininomen",
-        "hypeddit": "https://hypeddit.com/nhi-dj/femininomenom"
+        "hypeddit": "https://hypeddit.com/nhi-dj/femininomenom",
+        "droploud": "https://droploud.com/track/b98dbc72-6c71-443d-b996-b2e9e730e218"
       }
     },
     {
@@ -138,6 +143,7 @@
       "art": "/releases/i-need-a-forest-fire/cover.jpg?v=64fa3c03",
       "links": {
         "soundcloud": "https://soundcloud.com/nhi-dj/i-need-a-forest-fire",
+        "hypeddit": "https://hypeddit.com/nhi-dj/i-need-a-forest-fire",
         "droploud": "https://droploud.com/track/1250d73f-acf2-4b28-a9fb-3d22853ed2f0"
       }
     },
@@ -151,6 +157,7 @@
       "art": "/releases/dandadan/cover.jpg?v=091b9609",
       "links": {
         "soundcloud": "https://soundcloud.com/nhi-dj/dandadan",
+        "hypeddit": "https://hypeddit.com/nhi-dj/dandadan",
         "droploud": "https://droploud.com/track/d93a1020-bb33-4d75-904b-9f52311b0423"
       }
     },
@@ -164,6 +171,7 @@
       "art": "/releases/million-dollar-baby/cover.jpg?v=00ecaa68",
       "links": {
         "soundcloud": "https://soundcloud.com/nhi-dj/million-dollar-baby-nhi-flip",
+        "hypeddit": "https://hypeddit.com/nhi-dj/million-dollar-baby",
         "droploud": "https://droploud.com/track/602d7714-31c8-4f2e-b71b-bc546af506aa"
       }
     }

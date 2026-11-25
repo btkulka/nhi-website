@@ -1,4 +1,4 @@
-import { Download, ExternalLink, Link, Mail } from 'lucide-react';
+import { CloudDownload, Download, ExternalLink, Link, Mail } from 'lucide-react';
 import {
   siApplemusic,
   siBandcamp,
@@ -31,10 +31,11 @@ const BRAND = {
 };
 
 // Non-brand marks come from lucide: thin 1.5px outline in the text colour.
+// A flip carries both gates, so the two downloads get different marks.
 const GLYPH = {
   email:      Mail,
   droploud:   Download,
-  hypeddit:   Download,
+  hypeddit:   CloudDownload,
   smart_link: Link,
   other:      ExternalLink,
 };
