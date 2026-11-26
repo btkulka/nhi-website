@@ -1,6 +1,6 @@
 {
-  "generated_at": "2026-11-25T17:06:41.384Z",
-  "content_hash": "5911d12ce74086672567de6574477b51d48e04c9ea44a3a50874b23035c5e6b5",
+  "generated_at": "2026-11-26T04:09:36.841Z",
+  "content_hash": "b2086c6330f21feeef3d6bfe839f50b6e684b670a7ac769b3dc5822265852890",
   "version": "0.2.0",
   "artist": {
     "name": "nhi",
@@ -176,5 +176,9 @@
       }
     }
   ],
-  "next": null
+  "next": {
+    "title": "just remember me",
+    "type": "original",
+    "date": "2026-12-11"
+  }
 }
